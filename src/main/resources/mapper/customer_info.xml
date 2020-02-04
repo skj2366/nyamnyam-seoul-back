@@ -12,7 +12,8 @@
 			(	CUI_ID, CUI_PWD,
 				CUI_NAME, CUI_NICKNAME,
 				CUI_BIRTH, CUI_EMAIL, CUI_PHONE,
-				CUI_TRANS, CUI_GRADE,
+				CUI_TRANS,
+				<if test='cuiGrade != null and cuiGrade != "" '>CUI_GRADE,</if>
 				CUI_CREDAT, CUI_CRETIM,
 				CUI_MODDAT, CUI_MODTIM
 				)
@@ -20,7 +21,8 @@
 			(	#{cuiId}, #{cuiPwd}, 
 				#{cuiName}, #{cuiNickname},
 				#{cuiBirth}, #{cuiEmail}, #{cuiPhone}, 
-				#{cuiTrans}, #{cuiGrade}, 
+				#{cuiTrans},
+				<if test='cuiGrade != null and cuiGrade != "" '>#{cuiGrade},</if> 
 				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S'), 
 				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S')
 				)		
