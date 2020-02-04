@@ -18,8 +18,17 @@ public class LikeInfoServiceImpl implements LikeInfoService {
 	
 	@Override
 	public List<LikeInfoVO> selectLIIList() {
-		// TODO Auto-generated method stub
 		return liiMapper.selectLIIList();
+	}
+
+	@Override
+	public Integer insertLIIOne(LikeInfoVO lii) {
+		return liiMapper.insertLIIOne(lii);
+	}
+
+	@Override
+	public Integer deleteLIIOne(int liiNum) {
+		return liiMapper.deleteLIIOne(liiNum);
 	}
 
 }

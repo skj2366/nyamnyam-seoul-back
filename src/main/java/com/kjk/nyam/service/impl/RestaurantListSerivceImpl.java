@@ -18,7 +18,21 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 
 	@Override
 	public List<RestaurantListVO> selectRELList() {
-		// TODO Auto-generated method stub
 		return relMapper.selectRELList();
+	}
+
+	@Override
+	public Integer insertRELOne(RestaurantListVO rel) {
+		return relMapper.insertRELOne(rel);
+	}
+
+	@Override
+	public Integer updateRELOne(RestaurantListVO rel) {
+		return relMapper.updateRELOne(rel);
+	}
+
+	@Override
+	public Integer deleteRELOne(int relNum) {
+		return relMapper.deleteRELOne(relNum);
 	}
 }

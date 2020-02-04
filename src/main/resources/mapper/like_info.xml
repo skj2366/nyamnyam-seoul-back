@@ -5,4 +5,23 @@
 	<select id="selectLIIList" resultType="lii">
 		select * from like_info
 	</select>
+	<insert id="insertLIIOne" parameterType="lii">
+		insert into	customer_info
+			(	CUI_NUM,
+				REL_NUM,
+				LII_CREDAT,
+				LII_CRETIM
+			)
+		values
+			(
+				<if test='cuiNum != null and cuiNum != "" '>CUI_NUM = #{cuiNum},</if>
+				<if test='relNum != null and relNum != "" '>REL_NUM = #{relNum},</if>
+				LII_CREDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+				CUI_CRETIM = DATE_FORMAT(NOW(),'%H%i%S')
+			)		
+	</insert>
+	<delete id="deleteLIIOne">
+		DELETE FROM like_info
+		WHERE LII_NUM = #{liiNum}
+	</delete>
 </mapper>

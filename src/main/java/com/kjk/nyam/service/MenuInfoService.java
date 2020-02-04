@@ -7,4 +7,7 @@ import com.kjk.nyam.vo.MenuInfoVO;
 public interface MenuInfoService {
 
 	public List<MenuInfoVO> selectMEIList();
+	public Integer insertMEIOne(MenuInfoVO mei);
+	public Integer updateMEIOne(MenuInfoVO mei);
+	public Integer deleteMEIOne(int meiNum);
 }
