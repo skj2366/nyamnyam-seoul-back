@@ -7,21 +7,40 @@
 		select * from customer_info
 	</select>
 	
-	<insert id="insertCUIOne">
-		insert into
-		customer_info
-			(CUI_NUM, CUI_ID, CUI_PWD,
+	<insert id="insertCUIOne" parameterType="cui">
+		insert into	customer_info
+			(	CUI_ID, CUI_PWD,
+				CUI_NAME, CUI_NICKNAME,
 				CUI_BIRTH, CUI_EMAIL, CUI_PHONE,
 				CUI_TRANS, CUI_GRADE,
 				CUI_CREDAT, CUI_CRETIM,
 				CUI_MODDAT, CUI_MODTIM
 				)
 		values
-			(@COUNT+1, #{cuiId}, #{cuiPwd}, 
+			(	#{cuiId}, #{cuiPwd}, 
+				#{cuiName}, #{cuiNickname},
 				#{cuiBirth}, #{cuiEmail}, #{cuiPhone}, 
 				#{cuiTrans}, #{cuiGrade}, 
-				#{cuiCredat}, #{cuiCretim}, 
-				#{cuiModdat}, #{cuiModtim}
+				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S'), 
+				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S')
 				)		
 	</insert>
+	<update id="updateCUIOne">
+		UPDATE customer_info
+		<set>
+			<if test='cuiPwd != null and cuiPwd != "" '> CUI_PWD = #{cuiPwd},</if>
+			<if test='cuiName != null and cuiName != "" '> CUI_NAME = #{cuiName},</if>
+			<if test='cuiPhone != null and cuiPhone != "" '> CUI_PHONE = #{cuiPhone},</if>
+			<if test='cuiTrans != null and cuiTrans != "" '> CUI_TRANS = #{cuiTrans},</if>
+			<if test='cuiBirth != null and cuiBirth != "" '> CUI_BIRTH = #{cuiBirth},</if>
+			<if test='cuiEmail != null and cuiEmail != "" '> CUI_EMAIL = #{cuiEmail},</if>
+			CUI_MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+			CUI_MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
+		</set>
+		WHERE CUI_NUM = #{cuiNum}
+	</update>
+	<delete id="deleteCUIOne">
+		DELETE FROM customer_info 
+		WHERE CUI_NUM = #{cuiNum}
+	</delete>
 </mapper>

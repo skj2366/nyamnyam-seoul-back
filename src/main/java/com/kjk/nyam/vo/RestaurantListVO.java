@@ -30,6 +30,9 @@ public class RestaurantListVO {
 	private String relSunEnd;
 	private Double relLatitude;
 	private Double relLongitude;
+	private Integer zoneNum;
+	private Integer subwayNum;
+	private String relSubAddress;
 	private String relCredat;
 	private String relCretim;
 	private String relModdat;

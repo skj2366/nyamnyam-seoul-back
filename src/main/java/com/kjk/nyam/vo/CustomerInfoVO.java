@@ -14,6 +14,8 @@ public class CustomerInfoVO {
 	private Integer cuiNum;
 	private String cuiId;
 	private String cuiPwd;
+	private String cuiName;
+	private String cuiNickname;
 	private String cuiBirth;
 	private String cuiEmail;
 	private String cuiPhone;

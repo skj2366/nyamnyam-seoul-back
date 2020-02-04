@@ -21,4 +21,19 @@ public class CustomerInfoServiceImpl implements CustomerInfoService{
 		return cuiMapper.selectCUIList();
 	}
 
+	@Override
+	public Integer insertCUIOne(CustomerInfoVO cui) {
+		return cuiMapper.insertCUIOne(cui);
+	}
+
+	@Override
+	public Integer updateCUIOne(CustomerInfoVO cui) {
+		return cuiMapper.updateCUIOne(cui);
+	}
+
+	@Override
+	public Integer deleteCUIOne(int cuiNum) {
+		return cuiMapper.deleteCUIOne(cuiNum);
+	}
+
 }

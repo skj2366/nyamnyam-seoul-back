@@ -5,4 +5,90 @@
 	<select id="selectRELList" resultType="rel">
 		select * from restaurant_list
 	</select>
+	<insert id="insertRELOne" parameterType="rel">
+		INSERT INTO	restaurant_list
+			(	<if test='relName != null and relName != "" '>REL_NAME,</if>
+				<if test='relCategory != null and relCategory != "" '>REL_CATEGORY,</if>
+				<if test='relMonStart != null and relMonStart != "" '>REL_MON_START,</if>
+				<if test='relMonEnd != null and relMonEnd != "" '>REL_MON_END,</if>
+				<if test='relTueStart != null and relTueStart != "" '>REL_TUE_START,</if>
+				<if test='relTueEnd != null and relTueEnd != "" '>REL_TUE_END,</if>
+				<if test='relWedStart != null and relWedStart != "" '>REL_WED_START,</if>
+				<if test='relWedEnd != null and relWedEnd != "" '>REL_WED_END,</if>
+				<if test='relThuStart != null and relThuStart != "" '>REL_THU_START,</if>
+				<if test='relThuEnd != null and relThuEnd != "" '>REL_THU_END,</if>
+				<if test='relFriStart != null and relFriStart != "" '>REL_FRI_START,</if>
+				<if test='relFriEnd != null and relFriEnd != "" '>REL_FRI_END,</if>
+				<if test='relSatStart != null and relSatStart != "" '>REL_SAT_START,</if>
+				<if test='relSatEnd != null and relSatEnd != "" '>REL_SAT_END,</if>
+				<if test='relSunStart != null and relSunStart != "" '>REL_SUN_START,</if>
+				<if test='relSunEnd != null and relSunEnd != "" '>REL_SUN_END,</if>
+				<if test='relLatitude != null and relLatitude != "" '>REL_LATITUDE,</if>
+				<if test='relLongitude != null and relLongitude != "" '>REL_LONGITUDE,</if>
+				<if test='zoneNum != null and zoneNum != "" '>ZONE_NUM,</if>
+				<if test='subwayNum != null and subwayNum != "" '>SUBWAY_NUM,</if>
+				<if test='relSubAddress != null and relSubAddress != "" '>REL_SUB_ADDRESS,</if>
+				REL_CREDAT, REL_CRETIM,
+				REL_MODDAT, REL_MODTIM
+				)
+		values
+			(	
+				<if test='relName != null and relName != "" '>#{relName},</if>
+				<if test='relCategory != null and relCategory != "" '>#{relCategory},</if>
+				<if test='relMonStart != null and relMonStart != "" '>#{relMonStart},</if>
+				<if test='relMonEnd != null and relMonEnd != "" '>#{relMonEnd},</if>
+				<if test='relTueStart != null and relTueStart != "" '>#{relTueStart},</if>
+				<if test='relTueEnd != null and relTueEnd != "" '>#{relTueEnd},</if>
+				<if test='relWedStart != null and relWedStart != "" '>#{relWedStart},</if>
+				<if test='relWedEnd != null and relWedEnd != "" '>#{relWedEnd},</if>
+				<if test='relThuStart != null and relThuStart != "" '>#{relThuStart},</if>
+				<if test='relThuEnd != null and relThuEnd != "" '>#{relThuEnd},</if>
+				<if test='relFriStart != null and relFriStart != "" '>#{relFriStart},</if>
+				<if test='relFriEnd != null and relFriEnd != "" '>#{relFriEnd},</if>
+				<if test='relSatStart != null and relSatStart != "" '>#{relSatStart},</if>
+				<if test='relSatEnd != null and relSatEnd != "" '>#{relSatEnd},</if>
+				<if test='relSunStart != null and relSunStart != "" '>#{relSunStart},</if>
+				<if test='relSunEnd != null and relSunEnd != "" '>#{relSunEnd},</if>
+				<if test='relLatitude != null and relLatitude != "" '>#{relLatitude},</if>
+				<if test='relLongitude != null and relLongitude != "" '>#{relLongitude},</if>
+				<if test='zoneNum != null and zoneNum != "" '>#{zoneNum},</if>
+				<if test='subwayNum != null and subwayNum != "" '>#{subwayNum},</if>
+				<if test='relSubAddress != null and relSubAddress != "" '>#{relSubAddress},</if>
+				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S'), 
+				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S')
+				)		
+	</insert>
+	<update id="updateRELOne">
+		UPDATE restaurant_list
+		<set>
+			<if test='relName != null and relName != "" '>REL_NAME = #{relName},</if>
+			<if test='relCategory != null and relCategory != "" '>REL_CATEGORY = #{relCategory},</if>
+			<if test='relMonStart != null and relMonStart != "" '>REL_MON_START = #{relMonStart},</if>
+			<if test='relMonEnd != null and relMonEnd != "" '>REL_MON_END = #{relMonEnd},</if>
+			<if test='relTueStart != null and relTueStart != "" '>REL_TUE_START = #{relTueStart},</if>
+			<if test='relTueEnd != null and relTueEnd != "" '>REL_TUE_END = #{relTueEnd},</if>
+			<if test='relWedStart != null and relWedStart != "" '>REL_WED_START = #{relWedStart},</if>
+			<if test='relWedEnd != null and relWedEnd != "" '>REL_WED_END = #{relWedEnd},</if>
+			<if test='relThuStart != null and relThuStart != "" '>REL_THU_START = #{relThuStart},</if>
+			<if test='relThuEnd != null and relThuEnd != "" '>REL_THU_END = #{relThuEnd},</if>
+			<if test='relFriStart != null and relFriStart != "" '>REL_FRI_START = #{relFriStart},</if>
+			<if test='relFriEnd != null and relFriEnd != "" '>REL_FRI_END = #{relFriEnd},</if>
+			<if test='relSatStart != null and relSatStart != "" '>REL_SAT_START = #{relSatStart},</if>
+			<if test='relSatEnd != null and relSatEnd != "" '>REL_SAT_END = #{relSatEnd},</if>
+			<if test='relSunStart != null and relSunStart != "" '>REL_SUN_START = #{relSunStart},</if>
+			<if test='relSunEnd != null and relSunEnd != "" '>REL_SUN_END = #{relSunEnd},</if>
+			<if test='relLatitude != null and relLatitude != "" '>REL_LATITUDE = #{relLatitude},</if>
+			<if test='relLongitude != null and relLongitude != "" '>REL_LONGITUDE = #{relLongitude},</if>
+			<if test='zoneNum != null and zoneNum != "" '>ZONE_NUM = #{zoneNum},</if>
+			<if test='subwayNum != null and subwayNum != "" '>SUBWAY_NUM = #{subwayNum},</if>
+			<if test='relSubAddress != null and relSubAddress != "" '>REL_SUB_ADDRESS = #{relSubAddress},</if>
+			REL_MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'), 
+			REL_MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
+		</set>
+		WHERE REL_NUM = #{relNum}
+	</update>
+	<delete id="deleteRELOne">
+		DELETE FROM restaurant_list 
+		WHERE REL_NUM = #{relNum}
+	</delete>
 </mapper>

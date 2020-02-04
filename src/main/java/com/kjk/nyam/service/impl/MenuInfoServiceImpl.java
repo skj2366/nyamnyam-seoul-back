@@ -18,8 +18,22 @@ public class MenuInfoServiceImpl implements MenuInfoService {
 	
 	@Override
 	public List<MenuInfoVO> selectMEIList() {
-		// TODO Auto-generated method stub
 		return meiMapper.selectMEIList();
+	}
+
+	@Override
+	public Integer insertMEIOne(MenuInfoVO mei) {
+		return meiMapper.insertMEIOne(mei);
+	}
+
+	@Override
+	public Integer updateMEIOne(MenuInfoVO mei) {
+		return meiMapper.updateMEIOne(mei);
+	}
+
+	@Override
+	public Integer deleteMEIOne(int meiNum) {
+		return meiMapper.deleteMEIOne(meiNum);
 	}
 
 }
