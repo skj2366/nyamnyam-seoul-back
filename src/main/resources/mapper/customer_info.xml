@@ -2,7 +2,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kjk.nyam.mapper.CustomerInfoMapper">
+	
 	<select id="selectCUIList" resultType="cui">
 		select * from customer_info
 	</select>
+	
+	<insert id="insertCUIOne">
+		insert into
+		customer_info
+		values
+			(@COUNT+1, #{cuiId}, #{cuiPwd}, 
+				#{cuiBirth}, #{cuiEmail}, #{cuiPhone}, 
+				#{cuiTrans}, #{cuiGrade}, 
+				#{cuiCredat}, #{cuiCretim}, 
+				#{cuiModdat}, #{cuiModtim}
+			)		
+	</insert>
 </mapper>
