@@ -10,12 +10,18 @@
 	<insert id="insertCUIOne">
 		insert into
 		customer_info
+			(CUI_NUM, CUI_ID, CUI_PWD,
+				CUI_BIRTH, CUI_EMAIL, CUI_PHONE,
+				CUI_TRANS, CUI_GRADE,
+				CUI_CREDAT, CUI_CRETIM,
+				CUI_MODDAT, CUI_MODTIM
+				)
 		values
 			(@COUNT+1, #{cuiId}, #{cuiPwd}, 
 				#{cuiBirth}, #{cuiEmail}, #{cuiPhone}, 
 				#{cuiTrans}, #{cuiGrade}, 
 				#{cuiCredat}, #{cuiCretim}, 
 				#{cuiModdat}, #{cuiModtim}
-			)		
+				)		
 	</insert>
 </mapper>
