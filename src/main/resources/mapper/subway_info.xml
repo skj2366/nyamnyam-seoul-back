@@ -5,4 +5,9 @@
 	<select id="selectSUIList" resultType="sui">
 		select * from subway_info
 	</select>
+	
+	<select id="selectSUIListByZone" resultType="sui">
+		select * from subway_info
+		where ZONE_NUM = #{zoneNum}
+	</select>
 </mapper>

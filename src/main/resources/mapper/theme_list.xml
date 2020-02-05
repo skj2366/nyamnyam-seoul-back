@@ -5,4 +5,9 @@
 	<select id="selectTHLList" resultType="thl">
 		select * from theme_list
 	</select>
+	
+	<select id="selectTHLListByCodition" resultType="thl">
+		select * from theme_list
+		
+	</select>
 </mapper>
