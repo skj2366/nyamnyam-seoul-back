@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.kjk.nyam.auth.SHAEncoder;
 import com.kjk.nyam.mapper.CustomerInfoMapper;
 import com.kjk.nyam.service.CustomerInfoService;
 import com.kjk.nyam.vo.CustomerInfoVO;
@@ -23,6 +24,11 @@ public class CustomerInfoServiceImpl implements CustomerInfoService{
 
 	@Override
 	public Integer insertCUIOne(CustomerInfoVO cui) {
+		if(cui.getCuiBirth().indexOf("-")!=-1) {
+			cui.setCuiBirth(cui.getCuiBirth().replace("-", ""));
+		}
+		String pwd = cui.getCuiPwd();
+		cui.setCuiPwd(SHAEncoder.encode(pwd));
 		return cuiMapper.insertCUIOne(cui);
 	}
 
