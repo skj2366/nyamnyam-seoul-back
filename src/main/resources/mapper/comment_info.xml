@@ -6,6 +6,11 @@
 		select * from comment_info
 	</select>
 	
+	<select id="selectCOIListByCuiNum" resultType="coi">
+		select * from comment_info
+		where CUI_NUM = #{cuiNum}
+	</select>
+	
 	<insert id="insertCOIOne">
 		insert into comment_info
 		(

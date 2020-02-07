@@ -15,10 +15,27 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 
 	@Resource
 	private CommentInfoMapper coiMapper;
-	
+		
 	@Override
 	public List<CommentInfoVO> selectCOIList() {
 		return coiMapper.selectCOIList();
 	}
+
+	@Override
+	public List<CommentInfoVO> selectCOIListByCuiNum(int cuiNum) {
+		return coiMapper.selectCOIListByCuiNum(cuiNum);
+	}
+	
+	@Override
+	public Integer insertCOIOne(CommentInfoVO coi) {
+		return coiMapper.insertCOIOne(coi);
+	}
+
+	@Override
+	public Integer deleteCOIOne(int coiNum) {
+		return coiMapper.deleteCOIOne(coiNum);
+	}
+
+	
 
 }

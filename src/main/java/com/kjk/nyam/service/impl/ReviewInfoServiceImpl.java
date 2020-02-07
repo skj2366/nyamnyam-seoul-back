@@ -21,4 +21,19 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 		return reiMapper.selectREIList();
 	}
 
+	@Override
+	public Integer insertREIOne(ReviewInfoVO rei) {
+		return reiMapper.insertREIOne(rei);
+	}
+
+	@Override
+	public Integer updateREIOne(ReviewInfoVO rei) {
+		return reiMapper.updateREIOne(rei);
+	}
+
+	@Override
+	public Integer deleteREIOne(int reiNum) {
+		return reiMapper.deleteREIOne(reiNum);
+	}
+
 }
