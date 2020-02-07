@@ -5,4 +5,62 @@
 	<select id="selectREIList" resultType="rei">
 		select * from review_info
 	</select>
+	
+	<insert id="insertREIOne">
+		insert into review_info
+			(
+				CUI_NUM,
+				REL_NUM,
+				ZONE_NUM,
+				SUBWAY_NUM,
+				REI_LIKE,
+				REI_TITLE,
+				REI_DATE,
+				REI_TIME,
+				REI_CONTENTS,
+				REI_IMG1_NAME,
+				REI_IMG2_NAME,
+				REI_IMG3_NAME,
+				REI_CREDAT,
+				REI_CRETIM
+			)
+		values
+			(
+				#{cuiNum},
+				#{relNum},
+				#{zoneNum},
+				#{subwayNum},
+				0,
+				#{reiTitle},
+				#{reiDate},
+				#{reiTime},
+				#{reiContents},				
+				<if test='reiImg1Name != null and reiImg1Name != "" '>#{reiImg1Name},</if>
+				<if test='reiImg2Name != null and reiImg2Name != "" '>#{reiImg2Name},</if>
+				<if test='reiImg3Name != null and reiImg3Name != "" '>#{reiImg3Name},</if>
+				REI_CREDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+				REI_CRETIM = DATE_FORMAT(NOW(),'%H%i%S')
+			)
+	</insert>
+	
+	<update id="updateREIOne">
+		update review_info
+		<set>
+			<if test='reiTitle != null and reiTitle != "" '>REI_TITLE = #{reiTitle},</if>
+			<if test='reiDate != null and reiDate != "" '>REI_DATE = #{reiDate},</if>
+			<if test='reiTime != null and reiTime != "" '>REI_TIME = #{reiTime},</if>
+			<if test='reiContents != null and reiContents != "" '>REI_CONTENTS = #{reiContents},</if>
+			<if test='reiImg1Name != null and reiImg1Name != "" '>REI_IMG1_NAME = #{reiImg1Name},</if>
+			<if test='reiImg2Name != null and reiImg2Name != "" '>REI_IMG2_NAME = #{reiImg2Name},</if>
+			<if test='reiImg3Name != null and reiImg3Name != "" '>REI_IMG3_NAME = #{reiImg3Name},</if>
+			REI_MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+			REI_MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
+		</set>
+		WHERE REI_NUM = #{reiNum}
+	</update>
+	
+	<delete id="deleteREIOne">
+		delete from review_info
+		where REI_NUM = #{reiNum}
+	</delete>
 </mapper>

@@ -5,4 +5,28 @@
 	<select id="selectCOIList" resultType="coi">
 		select * from comment_info
 	</select>
+	
+	<insert id="insertCOIOne">
+		insert into comment_info
+		(
+			CUI_NUM,
+			REI_NUM,
+			COL_CONTENTS,
+			COL_CREDAT,
+			COL_CRETIM
+		)
+		values
+		(
+			#{cuiNum},
+			#{reiNum},
+			#{colContents},
+			DATE_FORMAT(NOW(),'%Y%m%d'),
+			DATE_FORMAT(NOW(),'%H%i%S')
+		)
+	</insert>
+	
+	<delete id="deleteCOIOne">
+		delete from comment_info
+		where COI_NUM = #{coiNum}
+	</delete>
 </mapper>
