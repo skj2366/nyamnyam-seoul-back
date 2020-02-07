@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjk.nyam.service.CustomerCertificationService;
@@ -30,9 +32,14 @@ public class CustomerCertificationController {
 		return cucService.selectCUCList();
 	}
 	
-	@GetMapping("/cuc/cernum")
-	public CustomerCertificationVO selectCUCByEmail(@RequestBody CustomerCertificationVO cuc) {
-		return cucService.selectCUCByEmail(cuc);
+//	@GetMapping("/cuc/email")
+//	public CustomerCertificationVO selectCUCByEmail(@RequestBody CustomerCertificationVO cuc) {
+//		return cucService.selectCUCByEmail(cuc);
+//	}
+	
+	@GetMapping("/cuc/{cucEmail}")
+	public CustomerCertificationVO selectCUCByEmail(@PathVariable("cucEmail") String cucEmail) {
+		return cucService.selectCUCByEmail(cucEmail);
 	}
 	
 	@PostMapping("/cuc")
