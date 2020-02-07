@@ -22,8 +22,8 @@ public class CustomerCertificationServiceImpl implements CustomerCertificationSe
 	}
 
 	@Override
-	public CustomerCertificationVO selectCUCByEmail(CustomerCertificationVO cuc) {
-		return cucMapper.selectCUCByEmail(cuc);
+	public CustomerCertificationVO selectCUCByEmail(String cucEmail) {
+		return cucMapper.selectCUCByEmail(cucEmail);
 	}
 
 	@Override
