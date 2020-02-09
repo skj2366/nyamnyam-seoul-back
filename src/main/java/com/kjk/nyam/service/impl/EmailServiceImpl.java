@@ -74,16 +74,25 @@ public class EmailServiceImpl implements EmailService {
 		// 랜덤 인증 번호 생성 끝
 		
 		message.setText(text);
-		
-		// CustomerCertification DB 에 저장 
+
 		CustomerCertificationVO cuc = new CustomerCertificationVO();
+		
+		int cucDelResult = 0;
+		cuc = cucService.selectCUCByEmail(cui.getCuiEmail());
+		System.out.println(cuc);
+		if(cuc != null) {
+			cucDelResult = cucService.deleteCUCOne(cui.getCuiEmail());
+		}else {
+			cuc = new CustomerCertificationVO();
+		}
+		
 		cuc.setCucCerNum(text);
 		cuc.setCucEmail(cui.getCuiEmail());
-		System.out.println(cuc);
-		int saveCerNum = cucService.insertCUCOne(cuc);
 		
+		int saveCerNum = cucService.insertCUCOne(cuc);
+		System.out.println("saveCerNum : " + saveCerNum);
 		if(saveCerNum == 1) {
-//			emailSender.send(message); //이메일 전송 
+			emailSender.send(message); //이메일 전송 
 			return text;
 		}else {
 			return null;

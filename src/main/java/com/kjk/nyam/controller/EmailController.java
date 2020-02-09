@@ -26,8 +26,6 @@ public class EmailController {
 	
 	@PostMapping("/send")
 	public String sendMailing(@RequestBody CustomerInfoVO cui) {
-		System.out.println("#####################");
-		System.out.println(cui);
 		return EMService.sendEmail(cui); 
 	}
 }
