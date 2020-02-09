@@ -37,8 +37,8 @@ public class CustomerInfoController {
 	}
 	
 	@GetMapping("/cui/cuc/email")
-	public Map<String, Object> selectCUIandCUCByEmail(@RequestParam("email") String email) {
-		return null;
+	public Integer selectCUIandCUCByEmail(@RequestParam("email") String email) {
+		return cuiService.selectCUIandCUCByEmail(email);
 	}
 	
 	@PostMapping("/cui")
@@ -53,8 +53,6 @@ public class CustomerInfoController {
 	
 	@DeleteMapping("/cui/{cuiNum}")
 	public Integer deleteCUIOne(@PathVariable("cuiNum") int cuiNum) {
-		System.out.println("######################");
-		System.out.println(cuiNum);
 		return cuiService.deleteCUIOne(cuiNum);
 	}
 }
