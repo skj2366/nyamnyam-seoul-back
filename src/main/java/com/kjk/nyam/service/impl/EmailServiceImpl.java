@@ -75,6 +75,7 @@ public class EmailServiceImpl implements EmailService {
 		
 		message.setText(text);
 		
+		// CustomerCertification DB 에 저장 
 		CustomerCertificationVO cuc = new CustomerCertificationVO();
 		cuc.setCucCerNum(text);
 		cuc.setCucEmail(cui.getCuiEmail());
@@ -82,7 +83,7 @@ public class EmailServiceImpl implements EmailService {
 		int saveCerNum = cucService.insertCUCOne(cuc);
 		
 		if(saveCerNum == 1) {
-//			emailSender.send(message);
+//			emailSender.send(message); //이메일 전송 
 			return text;
 		}else {
 			return null;

@@ -8,6 +8,7 @@ import com.kjk.nyam.vo.CustomerInfoVO;
 public interface CustomerInfoMapper {
 
 	public List<CustomerInfoVO> selectCUIList();
+	public CustomerInfoVO selectCUIByEmail(String cui);
 	public Integer insertCUIOne(CustomerInfoVO cui);
 	public Integer updateCUIOne(CustomerInfoVO cui);
 	public Integer deleteCUIOne(int cuiNum);

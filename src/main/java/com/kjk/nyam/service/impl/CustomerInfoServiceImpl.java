@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.kjk.nyam.auth.SHAEncoder;
+import com.kjk.nyam.mapper.CustomerCertificationMapper;
 import com.kjk.nyam.mapper.CustomerInfoMapper;
 import com.kjk.nyam.service.CustomerInfoService;
 import com.kjk.nyam.vo.CustomerInfoVO;
@@ -16,6 +17,9 @@ public class CustomerInfoServiceImpl implements CustomerInfoService{
 
 	@Resource
 	private CustomerInfoMapper cuiMapper;
+	
+	@Resource
+	private CustomerCertificationMapper cucMapper;
 	
 	@Override
 	public List<CustomerInfoVO> selectCUIList() {
@@ -40,6 +44,11 @@ public class CustomerInfoServiceImpl implements CustomerInfoService{
 	@Override
 	public Integer deleteCUIOne(int cuiNum) {
 		return cuiMapper.deleteCUIOne(cuiNum);
+	}
+
+	@Override
+	public CustomerInfoVO selectCUIByEmail(String cui) {
+		return cuiMapper.selectCUIByEmail(cui);
 	}
 
 }
