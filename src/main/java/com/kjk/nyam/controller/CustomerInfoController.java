@@ -1,6 +1,7 @@
 package com.kjk.nyam.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjk.nyam.service.CustomerInfoService;
@@ -26,6 +28,17 @@ public class CustomerInfoController {
 	@GetMapping("/cui")
 	public List<CustomerInfoVO> selectCUIList() {
 		return cuiService.selectCUIList();
+	}
+	
+	@GetMapping("/cui/byemail")
+	public CustomerInfoVO selectCUIByEmail(@RequestParam("cuiEmail") String cui) {
+		System.out.println(cui);
+		return cuiService.selectCUIByEmail(cui);
+	}
+	
+	@GetMapping("/cui/cuc/email")
+	public Map<String, Object> selectCUIandCUCByEmail(@RequestParam("email") String email) {
+		return null;
 	}
 	
 	@PostMapping("/cui")

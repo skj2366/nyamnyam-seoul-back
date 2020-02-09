@@ -7,6 +7,11 @@
 		select * from customer_info
 	</select>
 	
+	<select id="selectCUIByEmail" resultType="cui">
+		select * from customer_info
+		where CUI_EMAIL = #{cuiEmail}
+	</select>
+	
 	<insert id="insertCUIOne" parameterType="cui">
 		insert into	customer_info
 			(	CUI_ID, CUI_PWD,
