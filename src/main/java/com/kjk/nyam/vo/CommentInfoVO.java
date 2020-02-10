@@ -9,6 +9,7 @@ import lombok.Data;
 public class CommentInfoVO {
 
 	private Integer coiNum;
+	private Integer subNum;
 	private String coiContents;
 	private String coiCredat;
 	private String coiCretim;

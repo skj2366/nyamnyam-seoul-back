@@ -1,6 +1,7 @@
 package com.kjk.nyam.vo;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -13,16 +14,18 @@ public class ReviewInfoVO {
 	private String reiTitle;
 	private String reiDate;
 	private String reiTime;
-	private String reiContents; //clob??
+	private String reiContents; 
+	private MultipartFile reImg1;	
 	private String reiImg1Name;
+	private MultipartFile reImg2;
 	private String reiImg2Name;
+	private MultipartFile reImg3;
 	private String reiImg3Name;
 	private String reiCredat;
 	private String reiCretim;
 	private String reiModat;
 	private String reiMotim;
-	
-	
+		
 	private Integer cuiNum; //FK_유저
 	private Integer relNum; //FK_식당리스트
 	private Integer zoneNum; //FK_지역

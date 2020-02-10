@@ -21,4 +21,9 @@ public class SubwayInfoServiceImpl implements SubwayInfoService {
 		return suiMapper.selectSUIList();
 	}
 
+	@Override
+	public List<SubwayInfoVO> selectSUIListByZone(int zoneNum) {
+		return suiMapper.selectSUIListByZone(zoneNum);
+	}
+
 }
