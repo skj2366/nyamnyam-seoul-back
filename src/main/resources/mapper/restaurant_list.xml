@@ -5,6 +5,12 @@
 	<select id="selectRELList" resultType="rel">
 		select * from restaurant_list
 	</select>
+	
+	<select id="selectRELListByCategory" resultType="rel">
+		select * from restaurant_list
+		where REL_CATEGORY = #{relCategory}
+	</select>
+	
 	<insert id="insertRELOne" parameterType="rel">
 		INSERT INTO	restaurant_list
 			(	<if test='relName != null and relName != "" '>REL_NAME,</if>
