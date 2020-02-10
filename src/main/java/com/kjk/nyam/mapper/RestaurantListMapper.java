@@ -13,4 +13,6 @@ public interface RestaurantListMapper {
 	public Integer insertRELOne(RestaurantListVO rel);
 	public Integer updateRELOne(RestaurantListVO rel);
 	public Integer deleteRELOne(int relNum);
+
+	public List<RestaurantListVO> selectRELListByCategory(String relCategory);
 }
