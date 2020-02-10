@@ -22,6 +22,11 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	}
 
 	@Override
+	public ReviewInfoVO selectREIOne(int reiNum) {
+		return reiMapper.selectREIOne(reiNum);
+	}
+	
+	@Override
 	public Integer insertREIOne(ReviewInfoVO rei) {
 		return reiMapper.insertREIOne(rei);
 	}
@@ -33,7 +38,11 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 
 	@Override
 	public Integer deleteREIOne(int reiNum) {
-		return reiMapper.deleteREIOne(reiNum);
+		ReviewInfoVO reivo = reiMapper.selectREIOne(reiNum);
+		if(reiMapper.deleteREIOne(reiNum)==1) {
+			return 0;
+		}
+		return 0;
 	}
 
 }
