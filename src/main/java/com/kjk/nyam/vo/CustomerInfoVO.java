@@ -25,4 +25,6 @@ public class CustomerInfoVO {
 	private String cuiCretim;
 	private String cuiModdat;
 	private String cuiModtim;
+	
+	private String tokken;
 }
