@@ -6,6 +6,11 @@
 		select * from review_info
 	</select>
 	
+	<select id="selectREIOne" resultType="rei">
+		select * from review_info
+		where REI_NUM = #{reiNum}
+	</select>
+	
 	<insert id="insertREIOne">
 		insert into review_info
 			(

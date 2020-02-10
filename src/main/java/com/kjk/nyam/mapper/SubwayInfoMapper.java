@@ -10,4 +10,5 @@ import com.kjk.nyam.vo.SubwayInfoVO;
 public interface SubwayInfoMapper {
 	
 	public List<SubwayInfoVO> selectSUIList();
+	public List<SubwayInfoVO> selectSUIListByZone(int zoneNum);
 }

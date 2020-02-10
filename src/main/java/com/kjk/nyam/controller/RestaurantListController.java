@@ -42,4 +42,9 @@ public class RestaurantListController {
 	public Integer deleteRELOne(@PathVariable("relNum") int relNum) {
 		return relService.deleteRELOne(relNum);
 	}
+	
+	@GetMapping("/rel/{relCategory}")
+	public List<RestaurantListVO> selectRELListByCategory(@PathVariable("relCategory") String relCategory) {
+		return relService.selectRELListByCategory(relCategory);
+	}
 }

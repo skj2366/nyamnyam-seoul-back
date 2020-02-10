@@ -5,6 +5,12 @@
 	<select id="selectRELList" resultType="rel">
 		select * from restaurant_list
 	</select>
+	
+	<select id="selectRELListByCategory" resultType="rel">
+		select * from restaurant_list
+		where REL_CATEGORY = #{relCategory}
+	</select>
+	
 	<insert id="insertRELOne" parameterType="rel">
 		INSERT INTO	restaurant_list
 			(	<if test='relName != null and relName != "" '>REL_NAME,</if>
@@ -23,6 +29,7 @@
 				<if test='relSatEnd != null and relSatEnd != "" '>REL_SAT_END,</if>
 				<if test='relSunStart != null and relSunStart != "" '>REL_SUN_START,</if>
 				<if test='relSunEnd != null and relSunEnd != "" '>REL_SUN_END,</if>
+				<if test='relEtcTime != null and relEtcTime != "" '>REL_ETC_TIME,</if>	
 				<if test='relLatitude != null and relLatitude != "" '>REL_LATITUDE,</if>
 				<if test='relLongitude != null and relLongitude != "" '>REL_LONGITUDE,</if>
 				<if test='zoneNum != null and zoneNum != "" '>ZONE_NUM,</if>
@@ -49,6 +56,7 @@
 				<if test='relSatEnd != null and relSatEnd != "" '>#{relSatEnd},</if>
 				<if test='relSunStart != null and relSunStart != "" '>#{relSunStart},</if>
 				<if test='relSunEnd != null and relSunEnd != "" '>#{relSunEnd},</if>
+				<if test='relEtcTime != null and relEtcTime != "" '>#{relEtcTime},</if>
 				<if test='relLatitude != null and relLatitude != "" '>#{relLatitude},</if>
 				<if test='relLongitude != null and relLongitude != "" '>#{relLongitude},</if>
 				<if test='zoneNum != null and zoneNum != "" '>#{zoneNum},</if>
@@ -77,6 +85,7 @@
 			<if test='relSatEnd != null and relSatEnd != "" '>REL_SAT_END = #{relSatEnd},</if>
 			<if test='relSunStart != null and relSunStart != "" '>REL_SUN_START = #{relSunStart},</if>
 			<if test='relSunEnd != null and relSunEnd != "" '>REL_SUN_END = #{relSunEnd},</if>
+			<if test='relEtcTime != null and relEtcTime != "" '>REL_ETC_TIME = #{relEtcTime},</if>
 			<if test='relLatitude != null and relLatitude != "" '>REL_LATITUDE = #{relLatitude},</if>
 			<if test='relLongitude != null and relLongitude != "" '>REL_LONGITUDE = #{relLongitude},</if>
 			<if test='zoneNum != null and zoneNum != "" '>ZONE_NUM = #{zoneNum},</if>

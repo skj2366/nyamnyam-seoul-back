@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjk.nyam.service.ThemeListService;
 import com.kjk.nyam.vo.ThemeListVO;
 
+@CrossOrigin("http://localhost:80")
 @RestController 
 public class ThemeListController {
 

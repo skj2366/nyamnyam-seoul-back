@@ -35,4 +35,9 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 	public Integer deleteRELOne(int relNum) {
 		return relMapper.deleteRELOne(relNum);
 	}
+
+	@Override
+	public List<RestaurantListVO> selectRELListByCategory(String relCategory) {
+		return relMapper.selectRELListByCategory(relCategory);
+	}
 }
