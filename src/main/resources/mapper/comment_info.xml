@@ -16,6 +16,7 @@
 		(
 			CUI_NUM,
 			REI_NUM,
+			SUB_NUM,
 			COL_CONTENTS,
 			COL_CREDAT,
 			COL_CRETIM
@@ -24,6 +25,7 @@
 		(
 			#{cuiNum},
 			#{reiNum},
+			#{subNum},
 			#{colContents},
 			DATE_FORMAT(NOW(),'%Y%m%d'),
 			DATE_FORMAT(NOW(),'%H%i%S')

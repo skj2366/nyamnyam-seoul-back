@@ -7,4 +7,5 @@ import com.kjk.nyam.vo.SubwayInfoVO;
 public interface SubwayInfoService {
 	
 	public List<SubwayInfoVO> selectSUIList();
+	public List<SubwayInfoVO> selectSUIListByZone(int zoneNum);
 }
