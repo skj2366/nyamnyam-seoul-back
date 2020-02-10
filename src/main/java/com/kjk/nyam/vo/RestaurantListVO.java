@@ -28,6 +28,8 @@ public class RestaurantListVO {
 	private String relSatEnd;
 	private String relSunStart;
 	private String relSunEnd;
+	private String relEtcTime;
+	
 	private Double relLatitude;
 	private Double relLongitude;
 	private Integer zoneNum;
