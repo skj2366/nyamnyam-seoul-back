@@ -15,11 +15,11 @@ public class ReviewInfoVO {
 	private String reiDate;
 	private String reiTime;
 	private String reiContents; 
-	private MultipartFile reImg1;	
+	private MultipartFile reiImg1;	
 	private String reiImg1Name;
-	private MultipartFile reImg2;
+	private MultipartFile reiImg2;
 	private String reiImg2Name;
-	private MultipartFile reImg3;
+	private MultipartFile reiImg3;
 	private String reiImg3Name;
 	private String reiCredat;
 	private String reiCretim;
