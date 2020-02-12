@@ -1,10 +1,14 @@
 package com.kjk.nyam.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kjk.nyam.mapper.ReviewInfoMapper;
 import com.kjk.nyam.service.ReviewInfoService;
@@ -13,6 +17,8 @@ import com.kjk.nyam.vo.ReviewInfoVO;
 @Service
 public class ReviewInfoServiceImpl implements ReviewInfoService {
 
+	static final String BASE_PATH = "";
+	
 	@Resource
 	private ReviewInfoMapper reiMapper;
 	
@@ -28,6 +34,28 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	
 	@Override
 	public Integer insertREIOne(ReviewInfoVO rei) {
+		
+		if(rei.getReiImg1()!=null) {
+			MultipartFile mf1 = rei.getReiImg1();
+			String originName1 = mf1.getOriginalFilename();
+			String extName1 = "";			
+			if(originName1.lastIndexOf(".")!=-1) {
+				extName1 = originName1.substring(originName1.lastIndexOf("."));
+			}			
+			String fileName1 = System.currentTimeMillis() + extName1;
+			File saveFile1 = new File(BASE_PATH + fileName1);
+			
+			try {
+				Files.copy(mf1.getInputStream(), saveFile1.toPath());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			rei.setReiImg1Name("/imgs/"+fileName1);
+		}		
+			
+		
 		return reiMapper.insertREIOne(rei);
 	}
 
