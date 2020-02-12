@@ -20,6 +20,7 @@ public class CrawlingRestaurantVO {
 	private String time5;
 	private String time6;
 	private String time7;
+	private String timeEtc;
 	
 	private String menu1;
 	private String menu2;
