@@ -33,16 +33,17 @@ public class CrawlingRestaurantDAO {
 	public static List<HashMap<String, Object>> getId() {
 		String url = "jdbc:mariadb://localhost:3306/nyamnyam_seoul?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 		String id = "root";
-		String password = "ehdrms2089";		
+		String password = "";		
 		String className = "org.mariadb.jdbc.Driver";
 		
 		Connection con;
+		List<HashMap<String, Object>> rowList = new ArrayList<>();
 		try {
 			Class.forName(className);
 			con = DriverManager.getConnection(url, id, password);
 			Statement state = con.createStatement();
 			ResultSet rs = state.executeQuery(sql);
-			List<HashMap<String, Object>> rowList = new ArrayList<>();
+			
 			
 			while(rs.next()) {
 				HashMap<String, Object> row = new HashMap<>();
@@ -53,38 +54,37 @@ public class CrawlingRestaurantDAO {
 				rowList.add(row);
 			}
 			con.close();
-			return rowList;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}		
-		return null;
+		return rowList;
 	}
 	
 	public RestaurantListVO crawlingBasic() {
 		List<String> urlList = new ArrayList();
 		RestaurantListVO relvo = new RestaurantListVO();
+		System.out.println(getId().size());
 		for(int i=0; i<getId().size() ; i++) {
 			String url = "https://store.naver.com/restaurants/detail?";
 			url += getId().get(i).get("reiId");
+			System.out.println("url :" + url);
 			urlList.add(url);
 		}
-		
+
 		try {
-			for(int i=0; i<3; i++) {
-				System.out.println(urlList.get(i));
+
+			for(int i=0; i<=3; i++) {
+				System.out.println("No : " + i);
 				Document document = Jsoup.connect(urlList.get(i)).get();
 				Elements elsName = document.select(".biz_name_area>strong.name");
 				String textName = elsName.text();
 				String[] names = textName.split(" ");
-				System.out.println(" No 1");
-				System.out.println(names[0]);
 				relvo.setRelName(names[0]);
-				System.out.println("crawvo set RName");
 				System.out.println(relvo.getRelName());
-								
+
 				Elements elsCall = document.select(".list_item.list_item_biztel>div");
 				String textCall = elsCall.text();
 				relvo.setRelCall(textCall);
@@ -92,17 +92,16 @@ public class CrawlingRestaurantDAO {
 				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
 				String textAddress = elsAddress.text();
 				String addrs[] = textAddress.split(" ");
-				
 //				for(int j=0; j<addrs.length; j++) {
 //					System.out.println(addrs[j]);
 //				}
-				relMapper.insertRELOne(relvo);				
+//				relMapper.insertRELOne(relvo);
+				System.out.println(relvo);
 			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return relvo;		
 	}
 	
@@ -146,6 +145,8 @@ public class CrawlingRestaurantDAO {
 	
 	
 	public static void main(String[] args) {
-		
+		CrawlingRestaurantDAO crdao = new CrawlingRestaurantDAO();
+		RestaurantListVO relvo = new RestaurantListVO();
+		relvo = crdao.crawlingBasic();
 	}
 }
