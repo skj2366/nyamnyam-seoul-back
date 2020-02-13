@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjk.nyam.mapper.ThemeListMapper">
+	<select id="selectTHLList" resultType="thl">
+		select * from theme_list
+	</select>
+	
+	<select id="selectTHLListByCodition" resultType="thl">
+		select * from theme_list
+		<where>
+			THL_SOLO = <if test='thlSolo != 0'>1</if>
+			or
+			THL_COUPLE = <if test='thlCouple != 0'>1</if>
+			or
+			THL_FOUR = <if test='thlFour != 0'>1</if>
+		</where>
+	</select>
+</mapper>
