@@ -23,8 +23,8 @@ import com.kjk.nyam.vo.RestaurantListVO;
 @Repository
 public class CrawlingRestaurantDAO {
 	
-	@Resource
-	private RestaurantListVO relvo;
+//	@Resource
+//	private RestaurantListVO relvo;
 	@Resource
 	private RestaurantListMapper relMapper;
 		
@@ -33,7 +33,7 @@ public class CrawlingRestaurantDAO {
 	public static List<HashMap<String, Object>> getId() {
 		String url = "jdbc:mariadb://localhost:3306/nyamnyam_seoul?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 		String id = "root";
-		String password = "9876";		
+		String password = "ehdrms2089";		
 		String className = "org.mariadb.jdbc.Driver";
 		
 		Connection con;
@@ -65,7 +65,7 @@ public class CrawlingRestaurantDAO {
 	
 	public RestaurantListVO crawlingBasic() {
 		List<String> urlList = new ArrayList();
-		
+		RestaurantListVO relvo = new RestaurantListVO();
 		for(int i=0; i<getId().size() ; i++) {
 			String url = "https://store.naver.com/restaurants/detail?";
 			url += getId().get(i).get("reiId");

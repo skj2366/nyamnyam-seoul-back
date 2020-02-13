@@ -14,5 +14,6 @@ public class CrawlingRestaurantService {
 	
 	public RestaurantListVO crawling() {
 		return crdao.crawlingBasic();
+//		return null;
 	}
 }
