@@ -35,6 +35,7 @@
 				<if test='zoneNum != null and zoneNum != "" '>ZONE_NUM,</if>
 				<if test='subwayNum != null and subwayNum != "" '>SUBWAY_NUM,</if>
 				<if test='relSubAddress != null and relSubAddress != "" '>REL_SUB_ADDRESS,</if>
+				<if test='relCall != null and relSubAddress != ""'>REL_CALL,</if>
 				REL_CREDAT, REL_CRETIM,
 				REL_MODDAT, REL_MODTIM
 				)
@@ -62,6 +63,7 @@
 				<if test='zoneNum != null and zoneNum != "" '>#{zoneNum},</if>
 				<if test='subwayNum != null and subwayNum != "" '>#{subwayNum},</if>
 				<if test='relSubAddress != null and relSubAddress != "" '>#{relSubAddress},</if>
+				<if test='relCall != null and relSubAddress != ""'>#{relCall},</if>
 				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S'), 
 				DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%S')
 				)		
@@ -91,11 +93,13 @@
 			<if test='zoneNum != null and zoneNum != "" '>ZONE_NUM = #{zoneNum},</if>
 			<if test='subwayNum != null and subwayNum != "" '>SUBWAY_NUM = #{subwayNum},</if>
 			<if test='relSubAddress != null and relSubAddress != "" '>REL_SUB_ADDRESS = #{relSubAddress},</if>
+			<if test='relCall != null and relSubAddress != ""'>REL_CALL = #{relCall},</if>
 			REL_MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'), 
 			REL_MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
 		</set>
 		WHERE REL_NUM = #{relNum}
 	</update>
+	
 	<delete id="deleteRELOne">
 		DELETE FROM restaurant_list 
 		WHERE REL_NUM = #{relNum}
