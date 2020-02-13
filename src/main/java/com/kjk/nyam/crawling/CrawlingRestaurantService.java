@@ -83,8 +83,8 @@ public class CrawlingRestaurantService {
 	}
 	
 	public static void main(String[] args) {
-		//crawling();
-		//timeCrawling();
-		menuCrawling();
+		crawling();
+//		timeCrawling();
+//		menuCrawling();
 	}
 }

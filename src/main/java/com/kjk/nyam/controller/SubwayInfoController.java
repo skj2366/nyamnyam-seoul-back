@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kjk.nyam.service.SubwayInfoService;
 import com.kjk.nyam.vo.SubwayInfoVO;
 
-@CrossOrigin("http://localhost:80")
+@CrossOrigin("*")
 @RestController
 public class SubwayInfoController {
 
