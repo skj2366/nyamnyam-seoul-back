@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kjk.nyam.service.ZoneInfoService;
 import com.kjk.nyam.vo.ZoneInfoVO;
 
+@CrossOrigin("*")
 @RestController
 public class ZoneInfoController {
 
