@@ -34,7 +34,10 @@ public class RestaurantListVO {
 	private Double relLongitude;
 	private Integer zoneNum;
 	private Integer subwayNum;
+	
 	private String relSubAddress;
+	private String relCall;
+	
 	private String relCredat;
 	private String relCretim;
 	private String relModdat;
