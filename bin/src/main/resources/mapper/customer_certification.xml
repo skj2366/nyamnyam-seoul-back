@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjk.nyam.mapper.CustomerCertificationMapper">
+	
+	<select id="selectCUCList" resultType="cuc">
+		select * from customer_certification
+	</select>
+	
+	<select id="selectCUCByEmail" resultType="cuc">
+		SELECT * FROM CUSTOMER_CERTIFICATION
+		WHERE CUC_EMAIL = #{cucEmail}
+	</select>
+	
+	<insert id="insertCUCOne" parameterType="cuc">
+		INSERT INTO CUSTOMER_CERTIFICATION
+			(
+				CUC_EMAIL,
+				CUC_CER_NUM,
+				CUC_CREDAT,
+				CUC_CRETIM	
+			)
+		VALUES
+			(
+				#{cucEmail},
+				#{cucCerNum},
+				DATE_FORMAT(NOW(),'%Y%m%d'),
+				DATE_FORMAT(NOW(),'%H%i%S')
+			)
+	</insert>
+	
+	<delete id="deleteCUCOne">
+		DELETE FROM CUSTOMER_CERTIFICATION 
+		WHERE CUC_EMAIL = #{cuiEmail}
+	</delete>
+</mapper>
