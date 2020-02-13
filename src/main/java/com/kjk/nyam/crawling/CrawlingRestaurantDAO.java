@@ -18,92 +18,63 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Repository;
 
 import com.kjk.nyam.mapper.RestaurantListMapper;
+import com.kjk.nyam.vo.RestaurantIdVO;
 import com.kjk.nyam.vo.RestaurantListVO;
 
 @Repository
 public class CrawlingRestaurantDAO {
 	
 //	@Resource
-//	private RestaurantListVO relvo;
+//	private RestaurantIdMapper reIdMapper;
+
 	@Resource
 	private RestaurantListMapper relMapper;
-		
-	static String sql = "select * from restaurant_id";
 	
-	public static List<HashMap<String, Object>> getId() {
-		String url = "jdbc:mariadb://localhost:3306/nyamnyam_seoul?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
-		String id = "root";
-		String password = "";		
-		String className = "org.mariadb.jdbc.Driver";
-		
-		Connection con;
-		List<HashMap<String, Object>> rowList = new ArrayList<>();
-		try {
-			Class.forName(className);
-			con = DriverManager.getConnection(url, id, password);
-			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery(sql);
-			
-			
-			while(rs.next()) {
-				HashMap<String, Object> row = new HashMap<>();
-				String reiGugun = rs.getString("REI_GUGUN");
-				String reiId = rs.getString("REI_ID");
-				row.put("reiGugun", reiGugun);
-				row.put("reiId", reiId);				
-				rowList.add(row);
-			}
-			con.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}		
-		return rowList;
-	}
+//	public List<RestaurantIdVO> getId() {		
+//		return reIdMapper.selectREIdList();
+//	}
 	
-	public RestaurantListVO crawlingBasic() {
-		List<String> urlList = new ArrayList();
-		RestaurantListVO relvo = new RestaurantListVO();
-		System.out.println(getId().size());
-		for(int i=0; i<getId().size() ; i++) {
-			String url = "https://store.naver.com/restaurants/detail?";
-			url += getId().get(i).get("reiId");
-			System.out.println("url :" + url);
-			urlList.add(url);
-		}
-
-		try {
-
-			for(int i=0; i<=3; i++) {
-				System.out.println("No : " + i);
-				Document document = Jsoup.connect(urlList.get(i)).get();
-				Elements elsName = document.select(".biz_name_area>strong.name");
-				String textName = elsName.text();
-				String[] names = textName.split(" ");
-				relvo.setRelName(names[0]);
-				System.out.println(relvo.getRelName());
-
-				Elements elsCall = document.select(".list_item.list_item_biztel>div");
-				String textCall = elsCall.text();
-				relvo.setRelCall(textCall);
-				
-				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
-				String textAddress = elsAddress.text();
-				String addrs[] = textAddress.split(" ");
-//				for(int j=0; j<addrs.length; j++) {
-//					System.out.println(addrs[j]);
-//				}
-//				relMapper.insertRELOne(relvo);
-				System.out.println(relvo);
-			}
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return relvo;		
-	}
+//	public RestaurantListVO crawlingBasic() {
+//		List<String> urlList = new ArrayList();
+//		RestaurantListVO relvo = new RestaurantListVO();
+//		System.out.println(getId().size());
+//		for(int i=0; i<getId().size() ; i++) {
+//			String url = "https://store.naver.com/restaurants/detail?";
+//			url += getId().get(i).get("reiId");
+//			System.out.println("url :" + url);
+//			urlList.add(url);
+//		}
+//
+//		try {
+//
+//			for(int i=0; i<=3; i++) {
+//				System.out.println("No : " + i);
+//				Document document = Jsoup.connect(urlList.get(i)).get();
+//				Elements elsName = document.select(".biz_name_area>strong.name");
+//				String textName = elsName.text();
+//				String[] names = textName.split(" ");
+//				relvo.setRelName(names[0]);
+//				System.out.println(relvo.getRelName());
+//
+//				Elements elsCall = document.select(".list_item.list_item_biztel>div");
+//				String textCall = elsCall.text();
+//				relvo.setRelCall(textCall);
+//				
+//				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
+//				String textAddress = elsAddress.text();
+//				String addrs[] = textAddress.split(" ");
+////				for(int j=0; j<addrs.length; j++) {
+////					System.out.println(addrs[j]);
+////				}
+////				relMapper.insertRELOne(relvo);
+//				System.out.println(relvo);
+//			}
+//			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return relvo;		
+//	}
 	
 	public static void timeCrawling() {
 //		url += "1913875816";
@@ -145,8 +116,8 @@ public class CrawlingRestaurantDAO {
 	
 	
 	public static void main(String[] args) {
-		CrawlingRestaurantDAO crdao = new CrawlingRestaurantDAO();
-		RestaurantListVO relvo = new RestaurantListVO();
-		relvo = crdao.crawlingBasic();
+//		CrawlingRestaurantDAO crdao = new CrawlingRestaurantDAO();
+//		RestaurantListVO relvo = new RestaurantListVO();
+//		relvo = crdao.crawlingBasic();
 	}
 }

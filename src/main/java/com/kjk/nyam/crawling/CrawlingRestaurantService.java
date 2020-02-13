@@ -13,7 +13,7 @@ public class CrawlingRestaurantService {
 	private CrawlingRestaurantDAO crdao;
 	
 	public RestaurantListVO crawling() {
-		return crdao.crawlingBasic();
-//		return null;
+		//return crdao.crawlingBasic();
+		return null;
 	}
 }
