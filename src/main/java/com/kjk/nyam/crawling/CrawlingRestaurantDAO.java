@@ -23,28 +23,27 @@ import com.kjk.nyam.vo.RestaurantListVO;
 
 @Repository
 public class CrawlingRestaurantDAO {
-	
-//	@Resource
-//	private RestaurantIdMapper reIdMapper;
 
+	private RestaurantIdMapper reIdMapper;
+	
 	@Resource
 	private RestaurantListMapper relMapper;
 	
-//	public List<RestaurantIdVO> getId() {		
-//		return reIdMapper.selectREIdList();
-//	}
+	public List<RestaurantIdVO> getId() {		
+		return reIdMapper.selectREIdList();
+	}
 	
-//	public RestaurantListVO crawlingBasic() {
-//		List<String> urlList = new ArrayList();
-//		RestaurantListVO relvo = new RestaurantListVO();
-//		System.out.println(getId().size());
-//		for(int i=0; i<getId().size() ; i++) {
-//			String url = "https://store.naver.com/restaurants/detail?";
-//			url += getId().get(i).get("reiId");
-//			System.out.println("url :" + url);
-//			urlList.add(url);
-//		}
-//
+	public RestaurantListVO crawlingBasic() {
+		List<String> urlList = new ArrayList();
+		RestaurantListVO relvo = new RestaurantListVO();
+		System.out.println(getId().size());
+		for(int i=0; i<getId().size() ; i++) {
+			String url = "https://store.naver.com/restaurants/detail?";
+			url += getId().get(i).getReiId();
+			System.out.println("url :" + url);
+			urlList.add(url);
+		}
+
 //		try {
 //
 //			for(int i=0; i<=3; i++) {
@@ -73,8 +72,8 @@ public class CrawlingRestaurantDAO {
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-//		return relvo;		
-//	}
+		return relvo;		
+	}
 	
 	public static void timeCrawling() {
 //		url += "1913875816";
