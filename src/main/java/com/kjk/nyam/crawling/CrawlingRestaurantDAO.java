@@ -17,33 +17,29 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Repository;
 
+import com.kjk.nyam.mapper.RestaurantIdMapper;
 import com.kjk.nyam.mapper.RestaurantListMapper;
 import com.kjk.nyam.vo.RestaurantIdVO;
 import com.kjk.nyam.vo.RestaurantListVO;
 
-@Repository
 public class CrawlingRestaurantDAO {
-
-	private RestaurantIdMapper reIdMapper;
 	
-	@Resource
-	private RestaurantListMapper relMapper;
+//	@Resource
+//	private RestaurantListMapper relMapper;
 	
-	public List<RestaurantIdVO> getId() {		
-		return reIdMapper.selectREIdList();
-	}
 	
 	public RestaurantListVO crawlingBasic() {
-		List<String> urlList = new ArrayList();
-		RestaurantListVO relvo = new RestaurantListVO();
-		System.out.println(getId().size());
-		for(int i=0; i<getId().size() ; i++) {
-			String url = "https://store.naver.com/restaurants/detail?";
-			url += getId().get(i).getReiId();
-			System.out.println("url :" + url);
-			urlList.add(url);
-		}
-
+//		List<String> urlList = new ArrayList();
+//		RestaurantListVO relvo = new RestaurantListVO();
+//		System.out.println(getId().size());
+//		for(int i=0; i<3; i++) {
+//			String url = "https://store.naver.com/restaurants/detail?";
+//			url += getId().get(i).getReiId();
+//			System.out.println("url :" + url);
+//			urlList.add(url);
+//		}
+//		System.out.println(urlList);
+	
 //		try {
 //
 //			for(int i=0; i<=3; i++) {
@@ -71,8 +67,8 @@ public class CrawlingRestaurantDAO {
 //			
 //		} catch (IOException e) {
 //			e.printStackTrace();
-//		}
-		return relvo;		
+//		}		
+		return null;
 	}
 	
 	public static void timeCrawling() {
@@ -117,6 +113,8 @@ public class CrawlingRestaurantDAO {
 	public static void main(String[] args) {
 //		CrawlingRestaurantDAO crdao = new CrawlingRestaurantDAO();
 //		RestaurantListVO relvo = new RestaurantListVO();
-//		relvo = crdao.crawlingBasic();
+//		List<RestaurantIdVO> test = new ArrayList<RestaurantIdVO>();
+//		System.out.println(getId());
+		//relvo = crdao.crawlingBasic();
 	}
 }

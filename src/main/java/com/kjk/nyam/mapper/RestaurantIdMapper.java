@@ -1,4 +1,4 @@
-package com.kjk.nyam.crawling;
+package com.kjk.nyam.mapper;
 
 import java.util.List;
 
