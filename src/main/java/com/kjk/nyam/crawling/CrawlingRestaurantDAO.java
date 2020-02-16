@@ -23,54 +23,7 @@ import com.kjk.nyam.vo.RestaurantIdVO;
 import com.kjk.nyam.vo.RestaurantListVO;
 
 public class CrawlingRestaurantDAO {
-	
-//	@Resource
-//	private RestaurantListMapper relMapper;
-	
-	
-	public RestaurantListVO crawlingBasic() {
-//		List<String> urlList = new ArrayList();
-//		RestaurantListVO relvo = new RestaurantListVO();
-//		System.out.println(getId().size());
-//		for(int i=0; i<3; i++) {
-//			String url = "https://store.naver.com/restaurants/detail?";
-//			url += getId().get(i).getReiId();
-//			System.out.println("url :" + url);
-//			urlList.add(url);
-//		}
-//		System.out.println(urlList);
-	
-//		try {
-//
-//			for(int i=0; i<=3; i++) {
-//				System.out.println("No : " + i);
-//				Document document = Jsoup.connect(urlList.get(i)).get();
-//				Elements elsName = document.select(".biz_name_area>strong.name");
-//				String textName = elsName.text();
-//				String[] names = textName.split(" ");
-//				relvo.setRelName(names[0]);
-//				System.out.println(relvo.getRelName());
-//
-//				Elements elsCall = document.select(".list_item.list_item_biztel>div");
-//				String textCall = elsCall.text();
-//				relvo.setRelCall(textCall);
-//				
-//				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
-//				String textAddress = elsAddress.text();
-//				String addrs[] = textAddress.split(" ");
-////				for(int j=0; j<addrs.length; j++) {
-////					System.out.println(addrs[j]);
-////				}
-////				relMapper.insertRELOne(relvo);
-//				System.out.println(relvo);
-//			}
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}		
-		return null;
-	}
-	
+
 	public static void timeCrawling() {
 //		url += "1913875816";
 //		System.out.println("url : " + url);
