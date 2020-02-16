@@ -81,7 +81,7 @@ public class CrawlingRestaurantService {
 		RestaurantListVO rlistvo = new RestaurantListVO();
 		
 		try {			
-			for(int i=150; i<=170; i++) {
+			for(int i=0; i<=499; i++) {
 				System.out.println("No : " + i);
 				Document document = Jsoup.connect(urlList.get(i)).get();
 				Elements elsName = document.select(".biz_name_area>strong.name");
@@ -115,13 +115,15 @@ public class CrawlingRestaurantService {
 					}
 					
 					str += addrs[j] + " ";
-				}				
+				}
+				System.out.println(names[0]);
+				System.out.println(textCall);
 				System.out.println(str);
 				rlistvo.setRelSubAddress(str);
 				
 				
-				//rlistMapper.insertRELOne(rlistvo);
-				//System.out.println(rlistvo);
+//				rlistMapper.insertRELOne(rlistvo);
+//				System.out.println(rlistvo);
 			}
 			
 		} catch (IOException e) {
