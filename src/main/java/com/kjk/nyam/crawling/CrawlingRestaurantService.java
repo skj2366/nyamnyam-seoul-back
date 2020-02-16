@@ -132,4 +132,33 @@ public class CrawlingRestaurantService {
 		System.out.println(" ----- THE END -----");
 		return null;
 	}
+	
+	
+	public String timeCrawling() {
+		List<String> urlList = new ArrayList<>();
+		urlList = readFile();
+		RestaurantListVO rlistvo = new RestaurantListVO();		
+		
+		// String url = "https://store.naver.com/restaurants/detail?id=36827540";
+		
+		try {
+			for(int i=0; i<5 ; i++) {
+				Document document = Jsoup.connect(urlList.get(i)).get();
+				//Document document = Jsoup.connect(url).get();
+				Elements elsTime = document.select(".list_item.list_item_biztime>div");
+				String textTime = elsTime.text();
+				String[] times = textTime.split(" ");
+				for(int j=0 ; j<times.length ; j++) {
+					System.out.print(times[j] + " // ");
+				}
+				System.out.println("===============" + i + "번째 완료");
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
 }

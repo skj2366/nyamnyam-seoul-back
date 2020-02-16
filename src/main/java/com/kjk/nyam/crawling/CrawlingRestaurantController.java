@@ -27,4 +27,9 @@ public class CrawlingRestaurantController {
 		return crservice.crawling();
 	}
 	
+	@GetMapping("/time")
+	public String getTime() {
+		return crservice.timeCrawling();
+	}
+	
 }
