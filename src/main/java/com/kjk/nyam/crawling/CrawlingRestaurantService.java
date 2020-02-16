@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.kjk.nyam.mapper.RestaurantIdMapper;
 import com.kjk.nyam.mapper.RestaurantListMapper;
+import com.kjk.nyam.mapper.ZoneInfoMapper;
 import com.kjk.nyam.vo.RestaurantListVO;
 
 @Service
@@ -25,6 +26,8 @@ public class CrawlingRestaurantService {
 
 	@Resource
 	private RestaurantListMapper rlistMapper;
+	@Resource
+	private ZoneInfoMapper zoiMapper;
 	
 // 파일완성
 //	@Resource
@@ -78,7 +81,7 @@ public class CrawlingRestaurantService {
 		RestaurantListVO rlistvo = new RestaurantListVO();
 		
 		try {			
-			for(int i=0; i<=3; i++) {
+			for(int i=150; i<=170; i++) {
 				System.out.println("No : " + i);
 				Document document = Jsoup.connect(urlList.get(i)).get();
 				Elements elsName = document.select(".biz_name_area>strong.name");
@@ -93,18 +96,35 @@ public class CrawlingRestaurantService {
 				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
 				String textAddress = elsAddress.text();
 				String addrs[] = textAddress.split(" ");
-				for(int j=0; j<addrs.length; j++) {
-					System.out.println(addrs[j]);
-				}
+				
+				String str = "";
+				int zone = 0;
+				
+				for(int j=1; j<=addrs.length-1; j++) {					
+					if(j==1) {
+						zone = zoiMapper.selectZOIListByName(addrs[1]).getZoneNum();
+						rlistvo.setZoneNum(zone);
+					}
+					if(j==4) {						
+						addrs[j] = "/ 지번주소 : " + addrs[j].substring(2);						
+					}
+					if(j==addrs.length-1) {
+						addrs[j] = addrs[j].substring(0, addrs[j].length()-4);
+					}
+					
+					str += addrs[j] + " ";
+				}				
+				System.out.println(str);
+				rlistvo.setRelSubAddress(str);
+				
+				
 				//rlistMapper.insertRELOne(rlistvo);
-				System.out.println(rlistvo);
+				//System.out.println(rlistvo);
 			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
-		
-		
+		}				
 		return null;
 	}
 }
