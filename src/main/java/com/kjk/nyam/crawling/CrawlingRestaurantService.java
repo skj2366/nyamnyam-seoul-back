@@ -93,7 +93,9 @@ public class CrawlingRestaurantService {
 				String textCall = elsCall.text();
 				rlistvo.setRelCall(textCall);
 				
-				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
+//				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
+				Elements elsAddress = document.select(".list_bizinfo .list_item.list_item_address>div>ul>li");
+				
 				String textAddress = elsAddress.text();
 				String addrs[] = textAddress.split(" ");
 				
@@ -124,7 +126,8 @@ public class CrawlingRestaurantService {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}				
+		}
+		System.out.println(" ----- THE END -----");
 		return null;
 	}
 }
