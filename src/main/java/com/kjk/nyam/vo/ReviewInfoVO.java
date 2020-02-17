@@ -23,8 +23,9 @@ public class ReviewInfoVO {
 	private String reiImg3Name;
 	private String reiCredat;
 	private String reiCretim;
-	private String reiModat;
-	private String reiMotim;
+	private String reiModdat;
+	private String reiModtim;
+	private Integer reiCount;
 		
 	private Integer cuiNum; //FK_유저
 	private Integer relNum; //FK_식당리스트
