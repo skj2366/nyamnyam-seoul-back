@@ -11,8 +11,10 @@ public class MenuInfoVO {
 
 	private Integer meiNum;
 	private Integer relNum;
+	private String meiRelName;
+	
 	private String meiName;
-	private Integer meiPrice;
+	private String meiPrice;
 	private MultipartFile meiImg1;
 	private String meiImg1Name;
 	private MultipartFile meiImg2;

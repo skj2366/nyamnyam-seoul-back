@@ -9,6 +9,7 @@
 		insert into	menu_info
 			(	
 				<if test='relNum != null and relNum != "" '>REL_NUM,</if>
+				<if test='meiRelName != null and meiRelName != ""'>MEI_REL_NAME,</if>
 				<if test='meiName != null and meiName != "" '>MEI_NAME,</if>
 				<if test='meiPrice != null and meiPrice != "" '>MEI_PRICE,</if>
 				<if test='meiImg1Name != null and meiImg1Name != "" '>MEI_IMG1_NAME,</if>
@@ -20,6 +21,7 @@
 		values
 			(	
 				<if test='relNum != null and relNum != "" '>#{relNum},</if>
+				<if test='meiRelName != null and meiRelName != ""'>#{meiRelName},</if>
 				<if test='meiName != null and meiName != "" '>#{meiName},</if>
 				<if test='meiPrice != null and meiPrice != "" '>#{meiPrice},</if>
 				<if test='meiImg1Name != null and meiImg1Name != "" '>#{meiImg1Name},</if>
@@ -33,6 +35,7 @@
 		UPDATE menu_info
 		<set>
 			<if test='relNum != null and relNum != "" '>REL_NUM = #{relNum},</if>
+			<if test='meiRelName != null and meiRelName != ""'>MEI_REL_NAME = #{meiRelName},</if>
 			<if test='meiName != null and meiName != "" '>MEI_NAME = #{meiName},</if>
 			<if test='meiPrice != null and meiPrice != "" '>MEI_PRICE = #{meiPrice},</if>
 			<if test='meiImg1Name != null and meiImg1Name != "" '>MEI_IMG1_NAME = #{meiImg1Name},</if>

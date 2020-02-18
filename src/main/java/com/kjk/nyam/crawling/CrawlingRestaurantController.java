@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kjk.nyam.vo.MenuInfoVO;
 import com.kjk.nyam.vo.RestaurantIdVO;
 import com.kjk.nyam.vo.RestaurantListVO;
 
@@ -27,9 +28,10 @@ public class CrawlingRestaurantController {
 		return crservice.crawling();
 	}
 	
-	@GetMapping("/time")
-	public String getTime() {
-		return crservice.timeCrawling();
+	@GetMapping("/menu")
+	public MenuInfoVO getMenu() {
+		return crservice.crawlingMenu();
 	}
+	
 	
 }
