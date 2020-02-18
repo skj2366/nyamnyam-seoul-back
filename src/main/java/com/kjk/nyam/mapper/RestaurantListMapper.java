@@ -15,4 +15,5 @@ public interface RestaurantListMapper {
 	public Integer deleteRELOne(int relNum);
 
 	public List<RestaurantListVO> selectRELListByCategory(String relCategory);
+	public List<RestaurantListVO> selectRELListWithZoneAndSubway(Integer zoneNum, Integer subwayNum);
 }

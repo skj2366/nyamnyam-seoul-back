@@ -40,4 +40,9 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 	public List<RestaurantListVO> selectRELListByCategory(String relCategory) {
 		return relMapper.selectRELListByCategory(relCategory);
 	}
+
+	@Override
+	public List<RestaurantListVO> selectRELListWithZoneAndSubway(Integer zoneNum, Integer subwayNum) {
+		return relMapper.selectRELListWithZoneAndSubway(zoneNum, subwayNum);
+	}
 }
