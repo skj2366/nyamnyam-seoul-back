@@ -27,7 +27,8 @@
 				REI_IMG2_NAME,
 				REI_IMG3_NAME,
 				REI_CREDAT,
-				REI_CRETIM
+				REI_CRETIM,
+				REI_COUNT
 			)
 		values
 			(
@@ -44,7 +45,8 @@
 				<if test='reiImg2Name != null and reiImg2Name != "" '>#{reiImg2Name},</if>
 				<if test='reiImg3Name != null and reiImg3Name != "" '>#{reiImg3Name},</if>
 				REI_CREDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
-				REI_CRETIM = DATE_FORMAT(NOW(),'%H%i%S')
+				REI_CRETIM = DATE_FORMAT(NOW(),'%H%i%S'),
+				0
 			)
 	</insert>
 	
