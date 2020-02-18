@@ -5,4 +5,9 @@
 	<select id="selectZOIList" resultType="zoi">
 		select * from zone_info
 	</select>
+	
+	<select id="selectZOIListByName" resultType="zoi">
+		select * from zone_info
+		where ZONE_NAME = #{zone_name}
+	</select>
 </mapper>

@@ -10,4 +10,5 @@ import com.kjk.nyam.vo.ZoneInfoVO;
 public interface ZoneInfoMapper {
 	
 	public List<ZoneInfoVO> selectZOIList();
+	public ZoneInfoVO selectZOIListByName(String zoneName);
 }
