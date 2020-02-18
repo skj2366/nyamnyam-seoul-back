@@ -11,6 +11,11 @@
 		where REL_CATEGORY = #{relCategory}
 	</select>
 	
+	<select id="selectRELListWithZoneAndSubway" resultType="rel">
+		select * from restaurant_list
+		where zone_num = #{zoneNum} and subway_num = #{subwayNum}
+	</select>
+	
 	<insert id="insertRELOne" parameterType="rel">
 		INSERT INTO	restaurant_list
 			(	<if test='relName != null and relName != "" '>REL_NAME,</if>

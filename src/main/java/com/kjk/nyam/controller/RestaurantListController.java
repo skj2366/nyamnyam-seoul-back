@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjk.nyam.service.RestaurantListService;
@@ -46,5 +47,11 @@ public class RestaurantListController {
 	@GetMapping("/rel/{relCategory}")
 	public List<RestaurantListVO> selectRELListByCategory(@PathVariable("relCategory") String relCategory) {
 		return relService.selectRELListByCategory(relCategory);
+	}
+	
+	@GetMapping("/rels")
+	public List<RestaurantListVO> selectRELListWithZoneAndSubway(@RequestParam("zoneNum") Integer zoneNum, @RequestParam("subwayNum") Integer subwayNum) {
+		System.out.println("zoneNum : " + zoneNum + " and subwayNum : " + subwayNum);
+		return relService.selectRELListWithZoneAndSubway(zoneNum, subwayNum);
 	}
 }
