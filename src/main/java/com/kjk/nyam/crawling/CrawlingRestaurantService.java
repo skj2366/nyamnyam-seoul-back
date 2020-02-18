@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,9 +17,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
+import com.kjk.nyam.mapper.MenuInfoMapper;
 import com.kjk.nyam.mapper.RestaurantIdMapper;
 import com.kjk.nyam.mapper.RestaurantListMapper;
 import com.kjk.nyam.mapper.ZoneInfoMapper;
+import com.kjk.nyam.vo.MenuInfoVO;
 import com.kjk.nyam.vo.RestaurantListVO;
 
 @Service
@@ -28,6 +31,8 @@ public class CrawlingRestaurantService {
 	private RestaurantListMapper rlistMapper;
 	@Resource
 	private ZoneInfoMapper zoiMapper;
+	@Resource
+	private MenuInfoMapper meiMapper;
 	
 // 파일완성
 //	@Resource
@@ -78,24 +83,25 @@ public class CrawlingRestaurantService {
 	public RestaurantListVO crawling() {
 		List<String> urlList = new ArrayList<>();
 		urlList = readFile();
-		RestaurantListVO rlistvo = new RestaurantListVO();
+		RestaurantListVO rlistvo = new RestaurantListVO();				
 		
 		try {			
-			for(int i=0; i<=499; i++) {
+			for(int i=0; i<=5; i++) {
 				System.out.println("No : " + i);
 				Document document = Jsoup.connect(urlList.get(i)).get();
+				//이름
 				Elements elsName = document.select(".biz_name_area>strong.name");
 				String textName = elsName.text();
 				String[] names = textName.split(" ");
 				rlistvo.setRelName(names[0]);				
 
+				//전화번호
 				Elements elsCall = document.select(".list_item.list_item_biztel>div");
 				String textCall = elsCall.text();
 				rlistvo.setRelCall(textCall);
 				
-//				Elements elsAddress = document.select(".list_item.list_item_address>div>ul>li");
-				Elements elsAddress = document.select(".list_bizinfo .list_item.list_item_address>div>ul>li");
-				
+				//주소
+				Elements elsAddress = document.select(".list_bizinfo .list_item.list_item_address>div>ul>li");				
 				String textAddress = elsAddress.text();
 				String addrs[] = textAddress.split(" ");
 				
@@ -117,10 +123,19 @@ public class CrawlingRestaurantService {
 					str += addrs[j] + " ";
 				}
 				System.out.println(names[0]);
-				System.out.println(textCall);
-				System.out.println(str);
+				//System.out.println(textCall);
+				//System.out.println(str);
 				rlistvo.setRelSubAddress(str);
 				
+				//시간
+				Elements elsTime = document.select(".list_item.list_item_biztime>div");
+				String textTime = elsTime.text();
+				String[] times = textTime.split(" ");
+				for(int j=0 ; j<times.length ; j++) {
+					//System.out.print(times[j] + " // ");
+				}
+				//System.out.println("===============" + i + "번째 완료");
+				rlistvo.setRelEtcTime(textTime);
 				
 //				rlistMapper.insertRELOne(rlistvo);
 //				System.out.println(rlistvo);
@@ -134,31 +149,64 @@ public class CrawlingRestaurantService {
 	}
 	
 	
-	public String timeCrawling() {
+	public MenuInfoVO crawlingMenu() {
+		//메뉴		
+		MenuInfoVO minfovo = new MenuInfoVO();
 		List<String> urlList = new ArrayList<>();
 		urlList = readFile();
-		RestaurantListVO rlistvo = new RestaurantListVO();		
-		
-		// String url = "https://store.naver.com/restaurants/detail?id=36827540";
-		
-		try {
-			for(int i=0; i<5 ; i++) {
-				Document document = Jsoup.connect(urlList.get(i)).get();
-				//Document document = Jsoup.connect(url).get();
-				Elements elsTime = document.select(".list_item.list_item_biztime>div");
-				String textTime = elsTime.text();
-				String[] times = textTime.split(" ");
-				for(int j=0 ; j<times.length ; j++) {
-					System.out.print(times[j] + " // ");
+		for(int i=0; i<=10; i++) {		
+			System.out.println("No : " + i);
+			Document document;
+			try {
+				document = Jsoup.connect(urlList.get(i)).get();
+				
+				//이름
+				Elements elsName = document.select(".biz_name_area>strong.name");
+				String textName = elsName.text();
+				String[] names = textName.split(" ");			
+				
+				Elements elsMenu = document.select(".list_item.list_item_menu>div");
+				String textMenu = elsMenu.text();
+				
+				String[] menus1 = textMenu.split("대표");
+				String menu1 = "";
+				for(int j=0 ; j<menus1.length ; j++) {					
+					menu1 += menus1[j];
 				}
+				String[] menus2 = menu1.split(" ");
+				List<String> menus3 = new ArrayList<>(Arrays.asList(menus2));
+				menus3.remove("");
+				menus3.remove("");
+				String price = "";
+				String name = "";
+											
+				minfovo = new MenuInfoVO();
+				minfovo.setMeiRelName(names[0]);
+				
+				price += menus3.get(0);
+				name += menus3.get(1);
+				minfovo.setMeiPrice(price);
+				if(menus3.get(2).matches(".*원")) {
+					minfovo.setMeiName(name);
+				} else if(menus3.get(3).matches(".*원") ) {
+					name += menus3.get(2);
+					minfovo.setMeiName(name);	
+				} else if(menus3.get(4).matches(".*원"))	{
+					name += menus3.get(2);
+					name += menus3.get(3);
+					minfovo.setMeiName(name);
+				}			
+				System.out.println(minfovo);
+				//meiMapper.insertMEIOne(minfovo);						
+				
 				System.out.println("===============" + i + "번째 완료");
-			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			};						
 		}
-		
-		return "";
+		return null;
 	}
+	
 }
