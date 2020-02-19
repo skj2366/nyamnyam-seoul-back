@@ -24,12 +24,12 @@ public class CrawlingRestaurantController {
 	}
 	
 	@GetMapping("/crawling")
-	public RestaurantListVO getRestaurant() {
+	public Integer getRestaurant() {
 		return crservice.crawling();
 	}
 	
 	@GetMapping("/menu")
-	public MenuInfoVO getMenu() {
+	public Integer getMenu() {
 		return crservice.crawlingMenu();
 	}
 	
