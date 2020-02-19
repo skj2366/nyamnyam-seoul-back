@@ -14,6 +14,9 @@ public class RestaurantListVO {
 	private Integer relNum;
 	private String relName;
 	private String relCategory;
+	
+	private String relStringCategory; //크롤링 때문에
+	
 	private String relMonStart;
 	private String relMonEnd;
 	private String relTueStart;

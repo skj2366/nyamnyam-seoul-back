@@ -80,20 +80,30 @@ public class CrawlingRestaurantService {
 		return urlList;
 	}
 	
-	public RestaurantListVO crawling() {
+	public Integer crawling() {
 		List<String> urlList = new ArrayList<>();
 		urlList = readFile();
 		RestaurantListVO rlistvo = new RestaurantListVO();				
+		int count = 0;
 		
 		try {			
-			for(int i=0; i<=5; i++) {
-				System.out.println("No : " + i);
+			for(int i=0; i<=499; i++) {
+				//System.out.println("No : " + i);
 				Document document = Jsoup.connect(urlList.get(i)).get();
 				//이름
 				Elements elsName = document.select(".biz_name_area>strong.name");
 				String textName = elsName.text();
 				String[] names = textName.split(" ");
-				rlistvo.setRelName(names[0]);				
+				rlistvo.setRelName(names[0]);			
+				
+				//카테고리 String
+				Elements elsCategory = document.select(".biz_name_area>span.category");
+				String textCategory = elsCategory.text();
+				String[] categories = textCategory.split(" ");
+//				for(int j=0 ; j<categories.length ; j++) {
+//					System.out.print(categories[j] + "--");
+//				}				
+				rlistvo.setRelStringCategory(categories[0]);
 
 				//전화번호
 				Elements elsCall = document.select(".list_item.list_item_biztel>div");
@@ -110,7 +120,7 @@ public class CrawlingRestaurantService {
 				
 				for(int j=1; j<=addrs.length-1; j++) {					
 					if(j==1) {
-						zone = zoiMapper.selectZOIListByName(addrs[1]).getZoneNum();
+						zone = zoiMapper.selectZOIListByName(addrs[1]).getZoneNum(); //구역 넘버						
 						rlistvo.setZoneNum(zone);
 					}
 					if(j==4) {						
@@ -122,7 +132,7 @@ public class CrawlingRestaurantService {
 					
 					str += addrs[j] + " ";
 				}
-				System.out.println(names[0]);
+				//System.out.println(names[0]);
 				//System.out.println(textCall);
 				//System.out.println(str);
 				rlistvo.setRelSubAddress(str);
@@ -137,25 +147,38 @@ public class CrawlingRestaurantService {
 				//System.out.println("===============" + i + "번째 완료");
 				rlistvo.setRelEtcTime(textTime);
 				
-//				rlistMapper.insertRELOne(rlistvo);
-//				System.out.println(rlistvo);
+				rlistvo.setSubwayNum(0); // 일단 지하철역 0으로 insert
+				
+				
+				//insert 실행
+				//rlistMapper.insertRELOne(rlistvo);
+				count++;
+				for(int z=1 ; z<=20 ; z++) {
+					if(count == 25*z) {
+						System.out.println(count + "개 insert");
+					}					
+				}
+				//System.out.println(rlistvo);
 			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println(" ----- THE END -----");
-		return null;
+		return count;
 	}
 	
 	
-	public MenuInfoVO crawlingMenu() {
-		//메뉴		
+	public Integer crawlingMenu() {
+		int count = 0;
+		//메뉴 1개만 넣어짐		
 		MenuInfoVO minfovo = new MenuInfoVO();
+		RestaurantListVO relvo = new RestaurantListVO();
+		
 		List<String> urlList = new ArrayList<>();
 		urlList = readFile();
-		for(int i=0; i<=10; i++) {		
-			System.out.println("No : " + i);
+		for(int i=0; i<=499; i++) {		
+			//System.out.println("No : " + i);
 			Document document;
 			try {
 				document = Jsoup.connect(urlList.get(i)).get();
@@ -163,50 +186,85 @@ public class CrawlingRestaurantService {
 				//이름
 				Elements elsName = document.select(".biz_name_area>strong.name");
 				String textName = elsName.text();
-				String[] names = textName.split(" ");			
+				String[] names = textName.split(" ");
+				minfovo.setMeiRelName(names[0]);
+				
+				//구역
+				Elements elsAddress = document.select(".list_bizinfo .list_item.list_item_address>div>ul>li");				
+				String textAddress = elsAddress.text();
+				String addrs[] = textAddress.split(" ");
+				
+				//카테고리 String
+				Elements elsCategory = document.select(".biz_name_area>span.category");
+				String textCategory = elsCategory.text();
+				String[] categories = textCategory.split(" ");
+
+				String str = "";
+				int zone = 0;
+				
+				for(int j=1; j<=3; j++) {					
+					if(j==1) {
+						zone = zoiMapper.selectZOIListByName(addrs[1]).getZoneNum(); //구역 넘버	
+					}
+				
+				int matchRelNum = rlistMapper.selectRELNumByRELName(names[0], zone, categories[0]).getRelNum();
+				minfovo.setRelNum(matchRelNum); //식당 번호 매칭				
 				
 				Elements elsMenu = document.select(".list_item.list_item_menu>div");
 				String textMenu = elsMenu.text();
 				
-				String[] menus1 = textMenu.split("대표");
+				String[] menus1 = textMenu.split("대표"); 
 				String menu1 = "";
-				for(int j=0 ; j<menus1.length ; j++) {					
-					menu1 += menus1[j];
+				for(int z=0 ; z<menus1.length ; z++) {					
+					menu1 += menus1[z];
 				}
 				String[] menus2 = menu1.split(" ");
 				List<String> menus3 = new ArrayList<>(Arrays.asList(menus2));
 				menus3.remove("");
 				menus3.remove("");
+				
+//					for(int u=0 ; u<menus3.size() ; u++) {
+//						System.out.println(menus3.get(u));
+//					}
+				
 				String price = "";
 				String name = "";
-											
-				minfovo = new MenuInfoVO();
-				minfovo.setMeiRelName(names[0]);
-				
+												
 				price += menus3.get(0);
-				name += menus3.get(1);
+				name += menus3.get(1);				
 				minfovo.setMeiPrice(price);
-				if(menus3.get(2).matches(".*원")) {
-					minfovo.setMeiName(name);
-				} else if(menus3.get(3).matches(".*원") ) {
-					name += menus3.get(2);
-					minfovo.setMeiName(name);	
-				} else if(menus3.get(4).matches(".*원"))	{
-					name += menus3.get(2);
-					name += menus3.get(3);
-					minfovo.setMeiName(name);
-				}			
-				System.out.println(minfovo);
-				//meiMapper.insertMEIOne(minfovo);						
 				
-				System.out.println("===============" + i + "번째 완료");
+					if(menus3.get(2).matches(".*원") || menus3.get(2).matches(".*메뉴.*")) {
+						minfovo.setMeiName(name);					
+					} else if(menus3.get(3).matches(".*원") || menus3.get(3).matches(".*메뉴.*") ) {
+						name += menus3.get(2);					
+						minfovo.setMeiName(name);	
+					} else if(menus3.get(4).matches(".*원") || menus3.get(4).matches(".*메뉴.*"))	{
+						name += menus3.get(2);
+						name += menus3.get(3);					
+						minfovo.setMeiName(name);
+					}
+				
+				}
+				//System.out.println(minfovo);
+				meiMapper.insertMEIOne(minfovo);				
+				count ++;
+				for(int y=1 ; y<=20 ; y++) {
+					if(count == 25*y) {
+						System.out.println(count + "개 insert");
+					}					
+				}
+				
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			};						
+			}
+			
 		}
-		return null;
+
+		System.out.println(" ----- THE END -----");
+		return count;
 	}
 	
 }

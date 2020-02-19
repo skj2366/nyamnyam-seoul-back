@@ -11,6 +11,13 @@
 		where REL_CATEGORY = #{relCategory}
 	</select>
 	
+	<select id="selectRELNumByRELName" resultType="rel">
+		select * from restaurant_list
+		where REL_NAME = #{relName}
+		and zone_num = #{zoneNum}
+		and REL_STRING_CATEGORY = #{relStringCategory}
+	</select>
+	
 	<select id="selectRELListWithZoneAndSubway" resultType="rel">
 		select * from restaurant_list
 		where zone_num = #{zoneNum} and subway_num = #{subwayNum}
@@ -20,6 +27,7 @@
 		INSERT INTO	restaurant_list
 			(	<if test='relName != null and relName != "" '>REL_NAME,</if>
 				<if test='relCategory != null and relCategory != "" '>REL_CATEGORY,</if>
+				<if test='relStringCategory != null and relStringCategory != "" '>REL_STRING_CATEGORY,</if>
 				<if test='relMonStart != null and relMonStart != "" '>REL_MON_START,</if>
 				<if test='relMonEnd != null and relMonEnd != "" '>REL_MON_END,</if>
 				<if test='relTueStart != null and relTueStart != "" '>REL_TUE_START,</if>
@@ -48,6 +56,7 @@
 			(	
 				<if test='relName != null and relName != "" '>#{relName},</if>
 				<if test='relCategory != null and relCategory != "" '>#{relCategory},</if>
+				<if test='relStringCategory != null and relStringCategory != "" '>#{relStringCategory},</if>
 				<if test='relMonStart != null and relMonStart != "" '>#{relMonStart},</if>
 				<if test='relMonEnd != null and relMonEnd != "" '>#{relMonEnd},</if>
 				<if test='relTueStart != null and relTueStart != "" '>#{relTueStart},</if>
@@ -78,6 +87,7 @@
 		<set>
 			<if test='relName != null and relName != "" '>REL_NAME = #{relName},</if>
 			<if test='relCategory != null and relCategory != "" '>REL_CATEGORY = #{relCategory},</if>
+			<if test='relStringCategory != null and relStringCategory != "" '>REL_STRING_CATEGORY = #{relStringCategory},</if>			
 			<if test='relMonStart != null and relMonStart != "" '>REL_MON_START = #{relMonStart},</if>
 			<if test='relMonEnd != null and relMonEnd != "" '>REL_MON_END = #{relMonEnd},</if>
 			<if test='relTueStart != null and relTueStart != "" '>REL_TUE_START = #{relTueStart},</if>
