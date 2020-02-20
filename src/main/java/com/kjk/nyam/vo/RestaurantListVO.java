@@ -17,20 +17,6 @@ public class RestaurantListVO {
 	
 	private String relStringCategory; //크롤링 때문에
 	
-	private String relMonStart;
-	private String relMonEnd;
-	private String relTueStart;
-	private String relTueEnd;
-	private String relWedStart;
-	private String relWedEnd;
-	private String relThuStart;
-	private String relThuEnd;
-	private String relFriStart;
-	private String relFriEnd;
-	private String relSatStart;
-	private String relSatEnd;
-	private String relSunStart;
-	private String relSunEnd;
 	private String relEtcTime;
 	
 	private Double relLatitude;
