@@ -38,6 +38,19 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 
 	@Override
 	public List<RestaurantListVO> selectRELListByCategory(String relCategory) {
+			if(relCategory == "1" ) {
+				System.out.println("한식 선택");
+			} else if(relCategory == "2") {
+				System.out.println("중식 선택");
+			} else if(relCategory == "3") {
+				System.out.println("일식 선택");
+			} else if(relCategory == "4") {
+				System.out.println("양식 선택");
+			} else if(relCategory == "5") {
+				System.out.println("카페 선택");
+			} else {
+				System.out.println("기타");
+			}
 		return relMapper.selectRELListByCategory(relCategory);
 	}
 

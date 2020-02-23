@@ -35,5 +35,6 @@
 	<delete id="deleteCOIOne">
 		delete from comment_info
 		where COI_NUM = #{coiNum}
+		and SUB_NUM = #{coiNum}
 	</delete>
 </mapper>
