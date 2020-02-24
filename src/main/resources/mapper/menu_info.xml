@@ -5,6 +5,12 @@
 	<select id="selectMEIList" resultType="mei">
 		select * from menu_info
 	</select>
+	
+	<select id="selectMEIListByRelNum" resultType="mei">
+		select * from menu_info
+		where REL_NUM = #{relNum}
+	</select>
+	
 	<insert id="insertMEIOne" parameterType="mei">
 		insert into	menu_info
 			(	

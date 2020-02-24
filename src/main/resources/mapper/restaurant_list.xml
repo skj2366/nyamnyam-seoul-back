@@ -6,6 +6,11 @@
 		select * from restaurant_list
 	</select>
 	
+	<select id="selectRELOneByRelNum" resultType="rel">
+		select * from restaurant_list
+		where REL_NUM = #{relNum}
+	</select>
+		
 	<select id="selectRELListByCategory" resultType="rel">
 		select * from restaurant_list
 		where REL_CATEGORY = #{relCategory}

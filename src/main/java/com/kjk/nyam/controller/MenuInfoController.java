@@ -28,6 +28,11 @@ public class MenuInfoController {
 		return meiService.selectMEIList();
 	}
 	
+	@GetMapping("/mei/{relNum}")
+	public List<MenuInfoVO> selectMEIListByRelNum(@PathVariable("relNum") int relNum) {
+		return meiService.selectMEIListByRelNum(relNum);
+	}
+	
 	@PostMapping("/mei")
 	public Integer insertMEIOne(@RequestBody MenuInfoVO mei) {
 		return meiService.insertMEIOne(mei);

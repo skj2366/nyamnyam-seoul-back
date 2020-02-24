@@ -37,6 +37,11 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 	}
 
 	@Override
+	public RestaurantListVO selectRELOneByRelNum(Integer relNum) {
+		return relMapper.selectRELOneByRelNum(relNum);
+	}
+	
+	@Override
 	public List<RestaurantListVO> selectRELListByCategory(String relCategory) {
 			if(relCategory == "1" ) {
 				System.out.println("한식 선택");
@@ -63,4 +68,6 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 	public RestaurantListVO selectRELNumByRELName(String relName, Integer zoneNum, String relStringCategory) {
 		return relMapper.selectRELNumByRELName(relName, zoneNum, relStringCategory);
 	}
+
+	
 }

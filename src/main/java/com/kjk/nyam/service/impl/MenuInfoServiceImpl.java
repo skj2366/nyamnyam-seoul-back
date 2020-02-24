@@ -20,6 +20,11 @@ public class MenuInfoServiceImpl implements MenuInfoService {
 	public List<MenuInfoVO> selectMEIList() {
 		return meiMapper.selectMEIList();
 	}
+	
+	@Override
+	public List<MenuInfoVO> selectMEIListByRelNum(int relNum) {
+		return meiMapper.selectMEIListByRelNum(relNum);
+	}
 
 	@Override
 	public Integer insertMEIOne(MenuInfoVO mei) {
@@ -35,5 +40,7 @@ public class MenuInfoServiceImpl implements MenuInfoService {
 	public Integer deleteMEIOne(int meiNum) {
 		return meiMapper.deleteMEIOne(meiNum);
 	}
+
+	
 
 }
