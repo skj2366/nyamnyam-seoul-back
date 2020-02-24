@@ -22,6 +22,7 @@
 				REI_TITLE,
 				REI_DATE,
 				REI_TIME,
+				REI_THEME,
 				REI_CONTENTS,
 				REI_IMG1_NAME,
 				REI_IMG2_NAME,
@@ -40,6 +41,7 @@
 				#{reiTitle},
 				#{reiDate},
 				#{reiTime},
+				#{reiTheme},
 				#{reiContents},				
 				<if test='reiImg1Name != null and reiImg1Name != "" '>#{reiImg1Name},</if>
 				<if test='reiImg2Name != null and reiImg2Name != "" '>#{reiImg2Name},</if>
@@ -56,6 +58,7 @@
 			<if test='reiTitle != null and reiTitle != "" '>REI_TITLE = #{reiTitle},</if>
 			<if test='reiDate != null and reiDate != "" '>REI_DATE = #{reiDate},</if>
 			<if test='reiTime != null and reiTime != "" '>REI_TIME = #{reiTime},</if>
+			<if test='reiTheme != null and reiTheme != "" '>REI_THEME = #{reiTheme},</if>
 			<if test='reiContents != null and reiContents != "" '>REI_CONTENTS = #{reiContents},</if>
 			<if test='reiImg1Name != null and reiImg1Name != "" '>REI_IMG1_NAME = #{reiImg1Name},</if>
 			<if test='reiImg2Name != null and reiImg2Name != "" '>REI_IMG2_NAME = #{reiImg2Name},</if>
