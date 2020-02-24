@@ -63,4 +63,46 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 	public RestaurantListVO selectRELNumByRELName(String relName, Integer zoneNum, String relStringCategory) {
 		return relMapper.selectRELNumByRELName(relName, zoneNum, relStringCategory);
 	}
+
+	@Override
+	public List<RestaurantListVO> selectRELListWithTheme(String theme) {
+		System.out.println("service theme : " + theme);
+		String themeKey = "";
+		String themeValue = "1";
+		if("alone".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "thl.THL_SOLO";
+		}else if("two".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "thl.THL_COUPLE";
+		}else if("more".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "thl.THL_FOUR";
+		}else if("korean".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "rel.REL_CATEGORY";
+		}else if("chinese".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "rel.REL_CATEGORY";
+			themeValue = "2";
+		}else if("form".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "rel.REL_CATEGORY";
+			themeValue = "3";
+		}else if("japanese".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "rel.REL_CATEGORY";
+			themeValue = "4";
+		}else if("dessert".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "rel.REL_CATEGORY";
+			themeValue = "5";
+		}else if("etc".equals(theme)) {
+			System.out.println(" theme is " + theme);
+			themeKey = "rel.REL_CATEGORY";
+			themeValue = "6";
+		}
+		System.out.println("themeKey : " + themeKey);
+		return relMapper.selectRELListWithTheme(themeKey, themeValue);
+	}
 }

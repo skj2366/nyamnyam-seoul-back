@@ -54,4 +54,10 @@ public class RestaurantListController {
 		System.out.println("zoneNum : " + zoneNum + " and subwayNum : " + subwayNum);
 		return relService.selectRELListWithZoneAndSubway(zoneNum, subwayNum);
 	}
+	
+	@GetMapping("/rels/thl")
+	public List<RestaurantListVO> selectRELListWithTheme(@RequestParam("theme") String theme) {
+		System.out.println("Controller theme : " + theme);
+		return relService.selectRELListWithTheme(theme);
+	}
 }
