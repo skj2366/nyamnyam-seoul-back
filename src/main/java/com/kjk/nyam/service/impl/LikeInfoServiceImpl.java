@@ -20,6 +20,11 @@ public class LikeInfoServiceImpl implements LikeInfoService {
 	public List<LikeInfoVO> selectLIIList() {
 		return liiMapper.selectLIIList();
 	}
+	
+	@Override
+	public List<LikeInfoVO> selectLIIListByCuiNum(Integer cuiNum) {
+		return liiMapper.selectLIIListByCuiNum(cuiNum);
+	}
 
 	@Override
 	public Integer insertLIIOne(LikeInfoVO lii) {
@@ -30,5 +35,7 @@ public class LikeInfoServiceImpl implements LikeInfoService {
 	public Integer deleteLIIOne(int liiNum) {
 		return liiMapper.deleteLIIOne(liiNum);
 	}
+
+	
 
 }

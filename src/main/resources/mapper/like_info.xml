@@ -5,6 +5,12 @@
 	<select id="selectLIIList" resultType="lii">
 		select * from like_info
 	</select>
+	
+	<select id="selectLIIListByCuiNum" resultType="lii">
+		select * from like_info
+		where CUI_NUM = #{cuiNum}
+	</select>
+	
 	<insert id="insertLIIOne" parameterType="lii">
 		insert into	customer_info
 			(	CUI_NUM,

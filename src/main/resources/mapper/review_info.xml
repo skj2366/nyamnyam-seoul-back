@@ -11,6 +11,11 @@
 		where REI_NUM = #{reiNum}
 	</select>
 	
+	<select id="selectREIListByCuiNum" resultType="rei">
+		select * from review_info
+		where CUI_NUM = #{cuiNum}
+	</select>
+	
 	<insert id="insertREIOne">
 		insert into review_info
 			(

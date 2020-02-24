@@ -33,6 +33,11 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	}
 	
 	@Override
+	public List<ReviewInfoVO> selectREIListByCuiNum(int cuiNum) {
+		return reiMapper.selectREIListByCuiNum(cuiNum);
+	}
+	
+	@Override
 	public Integer insertREIOne(ReviewInfoVO rei) {
 		
 		if(rei.getReiImg1()!=null) {
@@ -72,5 +77,7 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 		}
 		return 0;
 	}
+
+	
 
 }

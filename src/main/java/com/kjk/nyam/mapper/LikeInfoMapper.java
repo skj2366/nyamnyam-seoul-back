@@ -10,6 +10,8 @@ import com.kjk.nyam.vo.LikeInfoVO;
 public interface LikeInfoMapper {
 
 	public List<LikeInfoVO> selectLIIList();
+	public List<LikeInfoVO> selectLIIListByCuiNum(Integer cuiNum);
+	
 	public Integer insertLIIOne(LikeInfoVO lii);
 	public Integer deleteLIIOne(int liiNum);
 }
