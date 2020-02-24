@@ -14,6 +14,7 @@ public class ReviewInfoVO {
 	private String reiTitle;
 	private String reiDate;
 	private String reiTime;
+	private String reiTheme;
 	private String reiContents; 
 	private MultipartFile reiImg1;	
 	private String reiImg1Name;
