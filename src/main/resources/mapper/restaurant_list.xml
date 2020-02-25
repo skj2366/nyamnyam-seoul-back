@@ -28,6 +28,18 @@
 		where zone_num = #{zoneNum} and subway_num = #{subwayNum}
 	</select>
 	
+	<select id="selectRELListWithTheme" resultType="rel" parameterType="String">
+		select * from restaurant_list rel 
+		inner join theme_list thl on thl.REL_NUM = rel.REL_NUM
+		where ${themeKey} = ${themeValue}
+		<!-- where thl.${value} = 1 -->
+		<!-- <where>
+			<if test="themeKey == 'alone'">
+				thl.#{value} = 1
+			</if>
+		</where> -->
+	</select>
+	
 	<insert id="insertRELOne" parameterType="rel">
 		INSERT INTO	restaurant_list
 			(	<if test='relName != null and relName != "" '>REL_NAME,</if>

@@ -15,4 +15,6 @@ public interface RestaurantListService {
 	public List<RestaurantListVO> selectRELListByCategory(String relCategory);
 	public List<RestaurantListVO> selectRELListWithZoneAndSubway(Integer zoneNum, Integer subwayNum);
 	public RestaurantListVO selectRELNumByRELName(String relName, Integer zoneNum, String relStringCategory);
+	
+	public List<RestaurantListVO> selectRELListWithTheme(String theme);
 }
