@@ -39,6 +39,9 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	
 	@Override
 	public Integer insertREIOne(ReviewInfoVO rei) {
+		if(rei.getReiDate().indexOf("-")!=-1) {
+			rei.setReiDate(rei.getReiDate().replace("-", ""));
+		}
 		
 		if(rei.getReiImg1()!=null) {
 			MultipartFile mf1 = rei.getReiImg1();
