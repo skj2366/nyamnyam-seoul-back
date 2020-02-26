@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kjk.nyam.service.ReviewInfoService;
 import com.kjk.nyam.vo.ReviewInfoVO;
 
-@CrossOrigin("http://localhost:80")
+@CrossOrigin("*")
 @RestController
 public class ReviewInfoController {
 
