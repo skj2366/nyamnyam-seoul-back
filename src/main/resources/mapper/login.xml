@@ -4,8 +4,10 @@
 <mapper namespace="com.kjk.nyam.mapper.LoginMapper">
 	
 	<select id="selectForCUI" resultType="cui">
-		select CUI_ID, CUI_PWD from customer_info
+		select * from customer_info
 		WHERE CUI_ID = #{cuiId} and CUI_PWD = #{cuiPwd}
+		<!-- select CUI_ID, CUI_PWD, CUI_EMAIL from customer_info
+		WHERE CUI_ID = #{cuiId} and CUI_PWD = #{cuiPwd} -->
 	</select>
 	
 </mapper>
