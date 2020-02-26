@@ -28,7 +28,13 @@ public class ReviewInfoController {
 		return reiService.selectREIList();
 	}
 	
-	@GetMapping("/rei/{cuiNum}")
+	@GetMapping("/rei/{reiNum}")
+	public ReviewInfoVO selectREIOne(@PathVariable String reiNum) {
+		int rNum = Integer.parseInt(reiNum);
+		return reiService.selectREIOne(rNum);
+	}
+	
+	@GetMapping("/reis/{cuiNum}")
 	public List<ReviewInfoVO> selectREIListByCuiNum(@PathVariable int cuiNum) {
 		return reiService.selectREIListByCuiNum(cuiNum);
 	}

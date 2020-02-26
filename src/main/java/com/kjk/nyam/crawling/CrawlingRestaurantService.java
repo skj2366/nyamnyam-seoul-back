@@ -120,7 +120,7 @@ public class CrawlingRestaurantService {
 				
 				for(int j=1; j<=addrs.length-1; j++) {					
 					if(j==1) {
-						zone = zoiMapper.selectZOIListByName(addrs[1]).getZoneNum(); //구역 넘버						
+						zone = zoiMapper.selectZOIOneByName(addrs[1]).getZoneNum(); //구역 넘버						
 						rlistvo.setZoneNum(zone);
 					}
 					if(j==4) {						
@@ -204,7 +204,7 @@ public class CrawlingRestaurantService {
 				
 				for(int j=1; j<=3; j++) {					
 					if(j==1) {
-						zone = zoiMapper.selectZOIListByName(addrs[1]).getZoneNum(); //구역 넘버	
+						zone = zoiMapper.selectZOIOneByName(addrs[1]).getZoneNum(); //구역 넘버	
 					}
 				
 				int matchRelNum = rlistMapper.selectRELNumByRELName(names[0], zone, categories[0]).getRelNum();

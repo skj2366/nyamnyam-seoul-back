@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjk.nyam.service.ZoneInfoService;
@@ -18,9 +19,18 @@ public class ZoneInfoController {
 	@Resource
 	private ZoneInfoService zoiService;
 	
-	@CrossOrigin("http://localhost:80")
 	@GetMapping("/zoi")
 	public List<ZoneInfoVO> selectZOIList() {
 		return zoiService.selectZOIList();
+	}
+	
+	@GetMapping("/zoina/{zoneName}")
+	public ZoneInfoVO selectZOIOneByName(@PathVariable("zoneName") String zoneName) {
+		return zoiService.selectZOIOneByName(zoneName);
+	}
+	
+	@GetMapping("/zoinu/{zoneNum}")
+	public ZoneInfoVO selectZOIOneByNum(@PathVariable("zoneNum") int zoneNum) {
+		return zoiService.selectZOIOneByNum(zoneNum);
 	}
 }
