@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kjk.nyam.service.CommentInfoService;
 import com.kjk.nyam.vo.CommentInfoVO;
 
-@CrossOrigin("http://localhost:80")
+@CrossOrigin("*")
 @RestController
 public class CommentInfoController {
 
