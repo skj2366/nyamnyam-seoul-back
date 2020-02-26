@@ -22,8 +22,14 @@ public class ZoneInfoServiceImple implements ZoneInfoService {
 	}
 
 	@Override
-	public ZoneInfoVO selectZOIListByName(String zoneName) {
-		return zoiMapper.selectZOIListByName(zoneName);
+	public ZoneInfoVO selectZOIOneByName(String zoneName) {
+		return zoiMapper.selectZOIOneByName(zoneName);
 	}
+
+	@Override
+	public ZoneInfoVO selectZOIOneByNum(Integer zoneNum) {
+		return zoiMapper.selectZOIOneByNum(zoneNum);
+	}
+	
 
 }

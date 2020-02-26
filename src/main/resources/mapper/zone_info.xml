@@ -6,8 +6,13 @@
 		select * from zone_info
 	</select>
 	
-	<select id="selectZOIListByName" resultType="zoi">
+	<select id="selectZOIOneByName" resultType="zoi">
 		select * from zone_info
-		where ZONE_NAME = #{zone_name}
+		where ZONE_NAME = #{zoneName}
+	</select>
+	
+	<select id="selectZOIOneByNum" resultType="zoi">
+		select * from zone_info
+		where ZONE_NUM = #{zoneNum}
 	</select>
 </mapper>

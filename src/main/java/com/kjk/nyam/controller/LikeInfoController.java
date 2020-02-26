@@ -29,7 +29,6 @@ public class LikeInfoController {
 	
 	@GetMapping("lii/{cuiNum}")
 	public List<LikeInfoVO> selectLIIListByCuiNum(@PathVariable("cuiNum") int cuiNum) {
-		// TODO Auto-generated method stub
 		return liiService.selectLIIListByCuiNum(cuiNum);
 	}
 	
