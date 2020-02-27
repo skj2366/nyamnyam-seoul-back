@@ -53,4 +53,9 @@ public class ReviewInfoController {
 	public Integer deleteREIOne(@PathVariable("reiNum") int reiNum) {
 		return reiService.deleteREIOne(reiNum);
 	}
+	
+	@GetMapping("/reis/board")
+	public List<ReviewInfoVO> selectREIListForReview() {
+		return reiService.selectREIListForReview();
+	}
 }
