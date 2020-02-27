@@ -13,4 +13,6 @@ public interface ReviewInfoService {
 	public Integer insertREIOne(ReviewInfoVO rei);
 	public Integer updateREIOne(ReviewInfoVO rei);
 	public Integer deleteREIOne(int reiNum);
+	
+	public List<ReviewInfoVO> selectREIListForReview();
 }

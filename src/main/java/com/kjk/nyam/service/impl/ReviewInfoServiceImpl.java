@@ -81,6 +81,11 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 		return 0;
 	}
 
+	@Override
+	public List<ReviewInfoVO> selectREIListForReview() {
+		return reiMapper.selectREIListForReview();
+	}
+
 	
 
 }
