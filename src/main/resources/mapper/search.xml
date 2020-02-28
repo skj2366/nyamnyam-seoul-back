@@ -23,8 +23,8 @@
 		select <include refid="reviewColumns"></include> from review_info rei
 		<where>
 			<if test="relName != null and relName !='' "> AND rei.REL_NUM = ANY(select rel.REL_NUM from restaurant_list rel where rel.REL_NAME like CONCAT('%',#{relName},'%'))</if>
-			<if test="zoneNum != null and zoneNum != '' "> AND ZONE_NUM = #{zoneNum}</if>
-			<if test="subwayNum != null and subwayNum != '' "> AND SUBWAY_NUM = #{subwayNum}</if>
+			<if test="zoneNum != null and zoneNum != '' and zoneNum != 0"> AND ZONE_NUM = #{zoneNum}</if>
+			<if test="subwayNum != null and subwayNum != '' and subwayNum != 0"> AND SUBWAY_NUM = #{subwayNum}</if>
 		</where>
 	</select>
 </mapper>
