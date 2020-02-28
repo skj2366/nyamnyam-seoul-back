@@ -65,8 +65,8 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 	}
 
 	@Override
-	public RestaurantListVO selectRELNumByRELName(String relName, Integer zoneNum, String relStringCategory) {
-		return relMapper.selectRELNumByRELName(relName, zoneNum, relStringCategory);
+	public RestaurantListVO selectRELNumByRELCall(String relCall, Integer zoneNum, String relStringCategory) {
+		return relMapper.selectRELNumByRELCall(relCall, zoneNum, relStringCategory);
 	}
 
 	@Override

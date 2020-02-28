@@ -16,9 +16,9 @@
 		where REL_CATEGORY = #{relCategory}
 	</select>
 	
-	<select id="selectRELNumByRELName" resultType="rel">
+	<select id="selectRELNumByRELCall" resultType="rel">
 		select * from restaurant_list
-		where REL_NAME = #{relName}
+		where REL_CALL = #{relCall}		
 		and zone_num = #{zoneNum}
 		and REL_STRING_CATEGORY = #{relStringCategory}
 	</select>
