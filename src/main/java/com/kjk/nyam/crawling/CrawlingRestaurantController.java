@@ -16,6 +16,8 @@ public class CrawlingRestaurantController {
 	
 	@Resource
 	private CrawlingRestaurantService crservice;
+	@Resource
+	private CrawlingMenuService crMenuService;
 	
 	@GetMapping("/urlList")
 	public String getUrl() {
@@ -30,7 +32,7 @@ public class CrawlingRestaurantController {
 	
 	@GetMapping("/menu")
 	public Integer getMenu() {
-		return crservice.crawlingMenu();
+		return crMenuService.crawlingMenu();
 	}
 	
 	

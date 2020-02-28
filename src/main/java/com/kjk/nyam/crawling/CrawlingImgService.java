@@ -1,12 +1,15 @@
 package com.kjk.nyam.crawling;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.imageio.ImageIO;
-
+import org.apache.catalina.startup.WebAnnotationSet;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,64 +17,70 @@ import org.jsoup.select.Elements;
 
 public class CrawlingImgService {
 
-	public static void main(String[] args) {
+	private static String SAVE_PATH = "D:\\ES\\Documents\\project\\project02\\image\\";
+	private static String SAVE_FILE_NAME = "";
+	
+	public static List<String> readFile() {
+		int n;		
+		String[] urls;
+		List<String> urlList = new ArrayList<String>();
+		BufferedReader bure = null;
+		
 		try {
-			Document document = Jsoup.connect("https://store.naver.com/restaurants/detail?id=83612604").get();
-			String folder = document.title();
-			Element element = document.select(".top_photo_area").get(0);
-			Elements img = element.select("img");
-			
-			int page = 0;
-			
-			for(Element e : img) {
-				String url = e.getElementsByAttribute("src").attr("src");
-				
-				URL imgUrl = new URL(url);
-				BufferedImage jpg = ImageIO.read(imgUrl);
-				File file = new File("경로" + folder + "\\" + page + ".jpg");
-				ImageIO.write(jpg, "jpg", file);
-				page += 1;
-			}
-			
+			bure = new BufferedReader(new FileReader("urlid.txt"));
+			String str = "";
+			while((str = bure.readLine()) != null) {
+				urls = str.split(" ");
+				urlList.add(urls[3]);
+			}			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return urlList;
+	}
+	
+	public static Integer imageCrawling() {
+		int count = 0;
+		String fileFormat = "jpg";
+		URL url = null;
+		BufferedImage bi = null;
 		
-		/*
-		 *  Document doc = Jsoup.connect("URL 주소").get();
-        String folder = doc.title();
-        Element element = doc.select("이미지들이 포함된 선택자").get(0);
-        Elements img = element.select("img");
-        int page = 0;
-        for (Element e : img) {
-            String url = e.getElementsByAttribute("src").attr("src");
-            
-            URL imgUrl = new URL(url);
-            
-            HttpURLConnection conn = (HttpURLConnection) imgUrl.openConnection();
-            System.out.println(conn.getContentLength());
-            
-            InputStream is = conn.getInputStream();
-            BufferedInputStream bis = new BufferedInputStream(is);
-            FileOutputStream os = new FileOutputStream("경로\\"+folder+"\\"+page+".jpg");
-            BufferedOutputStream bos = new BufferedOutputStream(os);
-            int byteImg;
-            
-            byte[] buf = new byte[conn.getContentLength()];
-            while((byteImg = bis.read(buf)) != -1) {
-                bos.write(buf,0,byteImg);
-            }
-            page += 1;
- 
-            bos.close();
-            os.close();
-            bis.close();
-            is.close();
-            
-        }
-
-		 */
+		List<String> urlList = new ArrayList<>();
+		urlList = readFile();
+		
+		try {
+			for(int i=0 ; i < 3 ; i++) {				
+				Document document = Jsoup.connect(urlList.get(i)).get();
+				System.out.println(urlList.get(i));
+							
+				Elements elements = document.select("");
+				String imgText = elements.text();
+				System.out.println("==> " + imgText);				
+			}
+							
+						
+//			File saveFile = new File(SAVE_PATH + SAVE_FILE_NAME);
+//			
+//			url = new URL(src);
+//			bi = ImageIO.read(url);
+//			ImageIO.write(bi, fileFormat, saveFile);			
+//			
+//			count += 1;			
+						
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();		
+		}		
+		return count;
+	}
+	
+	
+	public static void main(String[] args) {		
+		imageCrawling();		
 	}
 
 }
