@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjk.nyam.mapper.SearchMapper">
+
+	<sql id="reviewColumns">
+		REI_NUM, CUI_NUM, REL_NUM, ZONE_NUM, SUBWAY_NUM, 
+		REI_LIKE, REI_TITLE, REI_DATE, REI_TIME,
+		REI_THEME, REI_CONTENTS,
+		REI_IMG1_NAME, REI_IMG2_NAME, REI_IMG3_NAME,
+		DATE_FORMAT(REI_CREDAT,'%Y-%m-%d') AS REI_CREDAT, 
+		TIME_FORMAT(REI_CRETIM,'%H:%i:%s') AS REI_CRETIM,
+		DATE_FORMAT(REI_MODDAT, '%Y-%m-%d') AS REI_MODDAT, 
+		TIME_FORMAT(REI_MODTIM,'%H:%i:%s') AS REI_MODTIM,
+		(select CUI_NAME from customer_info AS CUI WHERE CUI.CUI_NUM = REI.CUI_NUM) as CUI_NAME,
+		(select REL_NAME from restaurant_list as REL WHERE REL.REL_NUM = REI.REL_NUM) as REL_NAME,
+		(select ZONE_NAME from zone_info AS ZOI WHERE ZOI.ZONE_NUM = REI.ZONE_NUM) as ZONE_NAME,
+		(select SUBWAY_NAME FROM SUBWAY_INFO AS SUI WHERE SUI.SUBWAY_NUM = REI.SUBWAY_NUM) AS SUBWAY_NAME,
+		REI_COUNT
+	</sql>
+	
+	<select id="search" parameterType="search" resultType="rei">
+		select <include refid="reviewColumns"></include> from review_info rei
+		<where>
+			<if test="relName != null and relName !='' "> AND rei.REL_NUM = ANY(select rel.REL_NUM from restaurant_list rel where rel.REL_NAME like CONCAT('%',#{relName},'%'))</if>
+			<if test="zoneNum != null and zoneNum != '' "> AND ZONE_NUM = #{zoneNum}</if>
+			<if test="subwayNum != null and subwayNum != '' "> AND SUBWAY_NUM = #{subwayNum}</if>
+		</where>
+	</select>
+</mapper>
