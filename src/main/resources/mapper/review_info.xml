@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="selectREIOne" resultType="rei">
-		select * from review_info
+		select <include refid="selectColumns"></include> from review_info as rei
 		where REI_NUM = #{reiNum}
 	</select>
 	
