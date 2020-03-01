@@ -25,6 +25,14 @@
 			<if test="relName != null and relName !='' "> AND rei.REL_NUM = ANY(select rel.REL_NUM from restaurant_list rel where rel.REL_NAME like CONCAT('%',#{relName},'%'))</if>
 			<if test="zoneNum != null and zoneNum != '' and zoneNum != 0"> AND ZONE_NUM = #{zoneNum}</if>
 			<if test="subwayNum != null and subwayNum != '' and subwayNum != 0"> AND SUBWAY_NUM = #{subwayNum}</if>
+			<if test="total != null and total != '' "> AND REI_THEME IN (${total})</if>
+			<!-- <if test="solo == 1 and two == 0 and four == 0"> AND REI_THEME = 1</if>
+			<if test="solo != null and solo != '' and solo != 0"> OR REI_THEME = 1</if>
+			<if test="solo == 0 and two == 1 and four == 0"> AND REI_THEME = 2</if>
+			<if test="two != null and two != '' and two != 0"> OR REI_THEME = 2</if>
+			<if test="solo == 0 and two == 0 and four == 1"> AND REI_THEME = 3</if>
+			<if test="four != null and four != '' and four != 0"> OR REI_THEME = 3</if> -->
 		</where>
+		ORDER BY rei.rei_num desc
 	</select>
 </mapper>
