@@ -27,6 +27,7 @@
 		SELECT
 		<include refid="selectColumns"></include>
 		FROM REVIEW_INFO AS REI
+		ORDER BY REI_NUM DESC
 	</select>
 	
 	<select id="selectREIOne" resultType="rei">
