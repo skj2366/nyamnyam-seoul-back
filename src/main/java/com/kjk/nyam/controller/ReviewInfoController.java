@@ -44,6 +44,11 @@ public class ReviewInfoController {
 		return reiService.insertREIOne(rei);
 	}
 	
+	@PostMapping("/rei/image")
+	public Integer insertImage() {
+		return reiService.insertImage();
+	}
+	
 	@PutMapping("/rei")
 	public Integer updateREIOne(@RequestBody ReviewInfoVO rei) {
 		return reiService.updateREIOne(rei);
