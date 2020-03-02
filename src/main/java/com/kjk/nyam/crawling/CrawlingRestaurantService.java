@@ -151,7 +151,7 @@ public class CrawlingRestaurantService {
 				
 				
 				//insert 실행
-				//rlistMapper.insertRELOne(rlistvo);
+				rlistMapper.insertRELOne(rlistvo);
 				count++;
 				for(int z=1 ; z<=20 ; z++) {
 					if(count == 25*z) {
