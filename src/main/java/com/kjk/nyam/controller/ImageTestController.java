@@ -13,17 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -60,8 +62,8 @@ public class ImageTestController {
 //	@Value("${image.upload.uri}")
 //	String uploadUri;
 	
-//	String uploadPath = "D:\\project\\nyamnyam_seoul\\back\\nyamnyam-seoul-back\\src\\main\\webapp\\resources\\upload\\"; // 동근이 데스크탑
-	String uploadPath = "E:\\study\\workspace\\nyamnyam-seoul\\src\\main\\webapp\\resources\\upload\\"; // 동근이 그램17
+	String uploadPath = "D:\\project\\nyamnyam_seoul\\back\\nyamnyam-seoul-back\\src\\main\\webapp\\resources\\upload\\"; // 동근이 데스크탑
+//	String uploadPath = "E:\\study\\workspace\\nyamnyam-seoul\\src\\main\\webapp\\resources\\upload\\"; // 동근이 그램17
 	String uploadUri = "/resources/upload/";
 	
 	@PostMapping("/image/upload")
@@ -96,8 +98,8 @@ public class ImageTestController {
 		
 		StringBuffer ww = new StringBuffer();
 		ww.append("<script type='text/javascript' crossorigin='anonymous'>alert('asdasd')</script>");
-//		return sb.toString();
-		return "success";
+		return sb.toString();
+//		return "success";
 	}
 	
 	@PostMapping("/upload/one")
@@ -108,6 +110,16 @@ public class ImageTestController {
 		map.put("uploaded", 1); // allow null
 		map.put("uploadedPercent", 1); // allow null
 		map.put("error", "error"); // allow null
+		return map;
+	}
+	
+	@PostMapping("/upload/two")
+	public @ResponseBody Map<String, Object> uploadImage(MultipartFile upload, @RequestHeader String host) {
+		String path = uploadPath;
+		String filePath = fu.fileUpload(upload, path);
+		System.out.println(filePath);
+		Map<String, Object> map = new HashMap<>();
+		map.put("url", "http://" + host + "/image?name=" + filePath);
 		return map;
 	}
 	
