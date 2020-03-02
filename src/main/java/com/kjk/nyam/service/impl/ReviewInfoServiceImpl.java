@@ -86,6 +86,11 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 		return reiMapper.selectREIListForReview();
 	}
 
+	@Override
+	public Integer insertImage() {
+		return null;
+	}
+
 	
 
 }
