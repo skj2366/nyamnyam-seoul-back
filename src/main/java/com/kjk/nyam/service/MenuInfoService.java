@@ -8,6 +8,7 @@ public interface MenuInfoService {
 
 	public List<MenuInfoVO> selectMEIList();
 	public List<MenuInfoVO> selectMEIListByRelNum(int relNum);
+	public Integer averagePriceByRelNum(int relNum);
 	
 	public Integer insertMEIOne(MenuInfoVO mei);
 	public Integer updateMEIOne(MenuInfoVO mei);

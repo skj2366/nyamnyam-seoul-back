@@ -1,5 +1,6 @@
 package com.kjk.nyam.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -39,6 +40,46 @@ public class MenuInfoServiceImpl implements MenuInfoService {
 	@Override
 	public Integer deleteMEIOne(int meiNum) {
 		return meiMapper.deleteMEIOne(meiNum);
+	}
+
+	@Override
+	public Integer averagePriceByRelNum(int relNum) {		
+		List<MenuInfoVO> menuList = new ArrayList<MenuInfoVO>();
+		menuList = meiMapper.selectMEIListByRelNum(relNum);
+		int sumPrice = 0;
+		int avgPrice = 0;
+		String getPrice = "";
+		List<Integer> priceList = new ArrayList<Integer>();
+		
+		for (int i=0 ; i < menuList.size() ; i++) {
+			getPrice = menuList.get(i).getMeiPrice();
+			if(getPrice.matches(".*변동.*")) {
+				System.out.println(getPrice);
+			} else if(getPrice.matches(".*~.*")) {
+				String[] cut1 = getPrice.split("~");
+				for(int z=0 ; z<cut1.length ; z++) {
+					System.out.println(cut1[z] + "//");
+				}
+				
+			} else {
+				String cutWon = getPrice.substring(0, getPrice.length()-1);
+				String[] cutComma = cutWon.split(",");
+				String finalPrice = "";
+				for(int j=0 ; j < cutComma.length ; j++) {
+					finalPrice += cutComma[j];
+				}
+				int price = Integer.parseInt(finalPrice);				
+				priceList.add(price);				
+			}			
+		}		
+		for (int j=0 ; j < priceList.size() ; j++) {
+			sumPrice += priceList.get(j);
+		}
+		if (priceList.size() != 0) {
+			avgPrice = sumPrice / priceList.size();
+		}		
+		//System.out.println("식당번호 : " + relNum + " ==> 가격계산  : 총 가격 : " + sumPrice + " / 평균 가격 : " + avgPrice);
+		return avgPrice;
 	}
 
 	

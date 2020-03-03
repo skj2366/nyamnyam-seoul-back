@@ -33,6 +33,11 @@ public class MenuInfoController {
 		return meiService.selectMEIListByRelNum(relNum);
 	}
 	
+	@GetMapping("/avg/{relNum}")
+	public Integer getAverageMenuPrice(@PathVariable("relNum") int relNum) {
+		return meiService.averagePriceByRelNum(relNum);
+	}
+	
 	@PostMapping("/mei")
 	public Integer insertMEIOne(@RequestBody MenuInfoVO mei) {
 		return meiService.insertMEIOne(mei);
