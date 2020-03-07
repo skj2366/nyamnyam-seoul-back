@@ -107,7 +107,7 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 			themeKey = "rel.REL_CATEGORY";
 			themeValue = "6";
 		}
-		System.out.println("themeKey : " + themeKey);
+		System.out.println("themeKey : " + themeKey + " && themeValue : " + themeValue);
 		return relMapper.selectRELListWithTheme(themeKey, themeValue);
 	}
 
