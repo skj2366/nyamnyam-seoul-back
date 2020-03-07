@@ -35,7 +35,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @CrossOrigin("*")
-@RestController
+@Controller
 @Slf4j
 //@PropertySource()
 public class ImageTestController {
@@ -64,11 +64,12 @@ public class ImageTestController {
 	
 	String uploadPath = "D:\\project\\nyamnyam_seoul\\back\\nyamnyam-seoul-back\\src\\main\\webapp\\resources\\upload\\"; // 동근이 데스크탑
 //	String uploadPath = "E:\\study\\workspace\\nyamnyam-seoul\\src\\main\\webapp\\resources\\upload\\"; // 동근이 그램17
-	String uploadUri = "/resources/upload/";
+//	String uploadUri = "/resources/upload/";
+	String uploadUri = "/image?name=";
 	
 	@PostMapping("/image/upload")
 	@SneakyThrows
-	public String upload(@RequestPart MultipartFile upload, @RequestParam("CKEditorFuncNum") String callback, HttpServletRequest request) {
+	public @ResponseBody String upload(@RequestPart MultipartFile upload, @RequestParam("CKEditorFuncNum") String callback, HttpServletRequest request) {
 		String sourceName = upload.getOriginalFilename();
 		System.out.println(sourceName);
 		String sourceExt = FilenameUtils.getExtension(sourceName).toLowerCase();
@@ -89,7 +90,7 @@ public class ImageTestController {
 		System.out.println(imgUrl);
 		// ckeditor upload callback
 		StringBuffer sb = new StringBuffer();
-		sb.append("<script type='application/javascript'>window.parent.CKEDITOR.tools.callFunction(");
+		sb.append("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(");
 		sb.append(callback);
 		sb.append(",'");
 		sb.append(imgUrl);
@@ -97,16 +98,21 @@ public class ImageTestController {
 		System.out.println(sb.toString());
 		
 		StringBuffer ww = new StringBuffer();
-		ww.append("<script type='text/javascript' crossorigin='anonymous'>alert('asdasd')</script>");
-		return sb.toString();
-//		return "success";
+//		ww.append("<script type='text/javascript'>alert('asdasd')</script>");
+		ww.append("<script type='text/javascript'>"
+				+ "window.parent.CKEDITOR.tools.callFunction("
+				+ 1
+				+ ",'" + imgUrl +"', '업로드 완료 !')" 
+				+ "</script>");
+//		return sb.toString();
+		return ww.toString();
 	}
 	
 	@PostMapping("/upload/one")
-	public Map<String, Object> upload(MultipartFile upload) throws IllegalStateException, IOException{
+	public @ResponseBody Map<String, Object> upload(MultipartFile upload, @RequestHeader String host) throws IllegalStateException, IOException{
 		String reName = fu.fileUpload(upload, uploadPath + File.separator);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("url", "http://localhost:809/image?name="+reName); //not null
+		map.put("url", "http://" + host + "/image?name="+reName); //not null
 		map.put("uploaded", 1); // allow null
 		map.put("uploadedPercent", 1); // allow null
 		map.put("error", "error"); // allow null
@@ -116,9 +122,22 @@ public class ImageTestController {
 	@PostMapping("/upload/two")
 	public @ResponseBody Map<String, Object> uploadImage(MultipartFile upload, @RequestHeader String host) {
 		String path = uploadPath;
+		System.out.println(host);
 		String filePath = fu.fileUpload(upload, path);
 		System.out.println(filePath);
 		Map<String, Object> map = new HashMap<>();
+		map.put("url", "http://" + host + "/image?name=" + filePath);
+		return map;
+	}
+	
+	@PostMapping("/upload/three")
+	public @ResponseBody Map<String, Object> uploadThree(MultipartFile upload, @RequestHeader String host) throws IllegalStateException, IOException {
+		String path = uploadPath;
+		String filePath = fu.fileUpload(upload, path);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uploaded", 1);
+		map.put("fileName", filePath);
+		map.put("uploadedPercent", 1); // allow null
 		map.put("url", "http://" + host + "/image?name=" + filePath);
 		return map;
 	}
