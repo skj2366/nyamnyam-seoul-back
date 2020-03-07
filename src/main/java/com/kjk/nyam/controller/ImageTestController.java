@@ -108,43 +108,55 @@ public class ImageTestController {
 		return ww.toString();
 	}
 	
+//	@PostMapping("/upload/one")
+//	public @ResponseBody Map<String, Object> upload(MultipartFile upload, @RequestHeader String host) throws IllegalStateException, IOException{
+//		String reName = fu.fileUpload(upload, uploadPath + File.separator);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("url", "http://" + host + "/image?name="+reName); //not null
+//		map.put("uploaded", 1); // allow null
+//		map.put("uploadedPercent", 1); // allow null
+//		map.put("error", "error"); // allow null
+//		return map;
+//	}
+	
 	@PostMapping("/upload/one")
 	public @ResponseBody Map<String, Object> upload(MultipartFile upload, @RequestHeader String host) throws IllegalStateException, IOException{
-		String reName = fu.fileUpload(upload, uploadPath + File.separator);
+		String reName = fu.fileUpload(upload);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("url", "http://" + host + "/image?name="+reName); //not null
-		map.put("uploaded", 1); // allow null
-		map.put("uploadedPercent", 1); // allow null
-		map.put("error", "error"); // allow null
-		return map;
-	}
-	
-	@PostMapping("/upload/two")
-	public @ResponseBody Map<String, Object> uploadImage(MultipartFile upload, @RequestHeader String host) {
-		String path = uploadPath;
-		System.out.println(host);
-		String filePath = fu.fileUpload(upload, path);
-		System.out.println(filePath);
-		Map<String, Object> map = new HashMap<>();
-		map.put("url", "http://" + host + "/image?name=" + filePath);
-		return map;
-	}
-	
-	@PostMapping("/upload/three")
-	public @ResponseBody Map<String, Object> uploadThree(MultipartFile upload, @RequestHeader String host) throws IllegalStateException, IOException {
-		String path = uploadPath;
-		String filePath = fu.fileUpload(upload, path);
-		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("url", "http://" + host + "/image?name="+reName);
 		map.put("uploaded", 1);
-		map.put("fileName", filePath);
-		map.put("uploadedPercent", 1); // allow null
-		map.put("url", "http://" + host + "/image?name=" + filePath);
+		map.put("uploadedPercent", 1);
+		map.put("error", "error");
 		return map;
 	}
+	
+//	@PostMapping("/upload/two")
+//	public @ResponseBody Map<String, Object> uploadImage(MultipartFile upload, @RequestHeader String host) {
+//		String path = uploadPath;
+//		System.out.println(host);
+//		String filePath = fu.fileUpload(upload, path);
+//		System.out.println(filePath);
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("url", "http://" + host + "/image?name=" + filePath);
+//		return map;
+//	}
+//	
+//	@PostMapping("/upload/three")
+//	public @ResponseBody Map<String, Object> uploadThree(MultipartFile upload, @RequestHeader String host) throws IllegalStateException, IOException {
+//		String path = uploadPath;
+//		String filePath = fu.fileUpload(upload, path);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("uploaded", 1);
+//		map.put("fileName", filePath);
+//		map.put("uploadedPercent", 1); // allow null
+//		map.put("url", "http://" + host + "/image?name=" + filePath);
+//		return map;
+//	}
 	
 	@GetMapping("/image")
 	public ResponseEntity<byte[]> image(@RequestParam(value="name") String name) throws IOException{
-		File file = new File(uploadPath + File.separator + name);
+//		File file = new File(uploadPath + File.separator + name);
+		File file = new File(fu.returnBasePath() + File.separator + name);
 		FileInputStream in = new FileInputStream(file);
 		byte[] buffer = new byte[in.available()];
 		in.read(buffer);
