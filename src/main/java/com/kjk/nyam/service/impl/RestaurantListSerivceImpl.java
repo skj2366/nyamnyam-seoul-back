@@ -90,11 +90,11 @@ public class RestaurantListSerivceImpl implements RestaurantListService {
 			System.out.println(" theme is " + theme);
 			themeKey = "rel.REL_CATEGORY";
 			themeValue = "2";
-		}else if("form".equals(theme)) {
+		}else if("japanese".equals(theme)) {
 			System.out.println(" theme is " + theme);
 			themeKey = "rel.REL_CATEGORY";
 			themeValue = "3";
-		}else if("japanese".equals(theme)) {
+		}else if("western".equals(theme)) {
 			System.out.println(" theme is " + theme);
 			themeKey = "rel.REL_CATEGORY";
 			themeValue = "4";
