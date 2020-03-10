@@ -87,10 +87,14 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	}
 
 	@Override
+	public Integer updateREICount(int reiNum) {
+		return reiMapper.updateREICount(reiNum);
+	}
+	
+	@Override
 	public Integer insertImage() {
 		return null;
 	}
-
 	
 
 }

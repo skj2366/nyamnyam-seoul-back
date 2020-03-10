@@ -103,6 +103,13 @@
 		WHERE REI_NUM = #{reiNum}
 	</update>
 	
+	<update id="updateREICount">
+		update review_info
+		set
+			REI_COUNT = REI_COUNT + 1
+		where REI_NUM = #{reiNum}
+	</update>
+		
 	<delete id="deleteREIOne">
 		delete from review_info
 		where REI_NUM = #{reiNum}
