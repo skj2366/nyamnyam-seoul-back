@@ -18,4 +18,5 @@ public interface ReviewInfoMapper {
 	public Integer deleteREIOne(int reiNum);
 	
 	public List<ReviewInfoVO> selectREIListForReview();
+	public Integer updateREICount(int reiNum);
 }

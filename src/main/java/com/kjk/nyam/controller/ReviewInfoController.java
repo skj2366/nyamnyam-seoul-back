@@ -54,6 +54,11 @@ public class ReviewInfoController {
 		return reiService.updateREIOne(rei);
 	}
 	
+	@PutMapping("/reiCount/{reiNum}")
+	public Integer updateREIOneCount(@PathVariable("reiNum") int reiNum) {
+		return reiService.updateREICount(reiNum);
+	}
+	
 	@DeleteMapping("/rei/{reiNum}")
 	public Integer deleteREIOne(@PathVariable("reiNum") int reiNum) {
 		return reiService.deleteREIOne(reiNum);

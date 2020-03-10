@@ -15,5 +15,8 @@ public interface ReviewInfoService {
 	public Integer deleteREIOne(int reiNum);
 	
 	public List<ReviewInfoVO> selectREIListForReview();
+	public Integer updateREICount(int reiNum);
+	
 	public Integer insertImage();
+	
 }
