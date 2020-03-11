@@ -4,6 +4,7 @@
 <mapper namespace="com.kjk.nyam.mapper.RestaurantListMapper">
 	<select id="selectRELList" resultType="rel">
 		select * from restaurant_list
+		order by rel_num desc
 	</select>
 	
 	<select id="selectRELOneByRelNum" resultType="rel">

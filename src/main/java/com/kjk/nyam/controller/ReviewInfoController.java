@@ -56,6 +56,7 @@ public class ReviewInfoController {
 	
 	@PutMapping("/reiCount/{reiNum}")
 	public Integer updateREIOneCount(@PathVariable("reiNum") int reiNum) {
+		System.out.println("리뷰번호 : " + reiNum + " 의 카운트 1 증가");
 		return reiService.updateREICount(reiNum);
 	}
 	
