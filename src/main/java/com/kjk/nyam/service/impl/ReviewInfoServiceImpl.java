@@ -88,6 +88,7 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 
 	@Override
 	public Integer updateREICount(int reiNum) {
+		//System.out.println("카운트 1 증가 서비스");
 		return reiMapper.updateREICount(reiNum);
 	}
 	

@@ -31,16 +31,19 @@ public class RestaurantListController {
 	
 	@PostMapping("/rel")
 	public Integer insertRELOne(@RequestBody RestaurantListVO rel) {
+		System.out.println("식당 insert : " + rel);
 		return relService.insertRELOne(rel);
 	}
 	
 	@PutMapping("/rel")
 	public Integer updateRELOne(@RequestBody RestaurantListVO rel) {
+		System.out.println("식당 update : " + rel);
 		return relService.updateRELOne(rel);
 	}
 	
 	@DeleteMapping("/rel/{relNum}")
 	public Integer deleteRELOne(@PathVariable("relNum") int relNum) {
+		System.out.println("식당 delete : " + relNum);
 		return relService.deleteRELOne(relNum);
 	}
 	
