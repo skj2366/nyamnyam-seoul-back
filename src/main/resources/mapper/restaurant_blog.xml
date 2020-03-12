@@ -1,0 +1,10 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjk.nyam.mapper.RestaurantBlogMapper">
+	<select id="selectBlogListByRelNum" resultType="blog">
+		select * from restaurant_blog
+		where REL_NUM = #{relNum}
+		order by BLOG_CONTENT_CREDAT desc
+	</select>	
+</mapper>
