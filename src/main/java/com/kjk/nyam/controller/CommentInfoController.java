@@ -33,6 +33,12 @@ public class CommentInfoController {
 		return coiService.selectCOIListByCuiNum(cuiNum);
 	}
 	
+	@GetMapping("/coi/rei/{reiNum}")
+	public List<CommentInfoVO> selectCOIListByReiNum(@PathVariable("reiNum") int reiNum) {
+		// 후기를 위한 댓글 리스트
+		return coiService.selectCOIListByReiNum(reiNum);
+	}
+	
 	@PostMapping("/coi")
 	public Integer insertPOIOne(@RequestBody CommentInfoVO coi) {
 		return coiService.insertCOIOne(coi);
