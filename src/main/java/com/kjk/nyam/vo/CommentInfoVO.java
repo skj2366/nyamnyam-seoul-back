@@ -17,4 +17,6 @@ public class CommentInfoVO {
 	private Integer cuiNum; //FK_유저
 	private Integer reiNum; //FK_후기
 	
+	private String cuiId;
+	
 }

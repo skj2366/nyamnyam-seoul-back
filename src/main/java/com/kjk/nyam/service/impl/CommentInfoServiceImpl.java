@@ -36,6 +36,11 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 		return coiMapper.deleteCOIOne(coiNum);
 	}
 
+	@Override
+	public List<CommentInfoVO> selectCOIListByReiNum(int reiNum) {
+		return coiMapper.selectCOIListByReiNum(reiNum);
+	}
+
 	
 
 }

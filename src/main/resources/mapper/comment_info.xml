@@ -2,8 +2,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kjk.nyam.mapper.CommentInfoMapper">
+	<sql id="selectColumns">
+		COI_NUM, CUI_NUM, REI_NUM, SUB_NUM, COI_CONTENTS, COI_CREDAT, COI_CRETIM,
+		(select CUI_ID from customer_info AS CUI WHERE CUI.CUI_NUM = COI.CUI_NUM) as CUI_ID
+	</sql>
+	
 	<select id="selectCOIList" resultType="coi">
 		select * from comment_info
+	</select>
+	
+	<select id="selectCOIListByReiNum" resultType="coi">
+		select <include refid="selectColumns"></include> from comment_info coi
+		where COI.REI_NUM = #{reiNum}
 	</select>
 	
 	<select id="selectCOIListByCuiNum" resultType="coi">
@@ -16,17 +26,17 @@
 		(
 			CUI_NUM,
 			REI_NUM,
-			SUB_NUM,
-			COL_CONTENTS,
-			COL_CREDAT,
-			COL_CRETIM
+			<if test='subNum != null and subNum != 0 '>SUB_NUM,</if>
+			COI_CONTENTS,
+			COI_CREDAT,
+			COI_CRETIM
 		)
 		values
 		(
 			#{cuiNum},
 			#{reiNum},
-			#{subNum},
-			#{colContents},
+			<if test='subNum != null and subNum != 0 '>#{subNum},</if>
+			#{coiContents},
 			DATE_FORMAT(NOW(),'%Y%m%d'),
 			DATE_FORMAT(NOW(),'%H%i%S')
 		)
