@@ -13,4 +13,8 @@ public class LikeInfoVO {
 	private Integer relNum;
 	private String liiCredat;
 	private String liiCretim;
+	
+	private String cuiName;
+	private String relName;
+	private String zoneName;
 }

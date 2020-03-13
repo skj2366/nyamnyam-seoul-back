@@ -75,6 +75,7 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	@Override
 	public Integer deleteREIOne(int reiNum) {
 		ReviewInfoVO reivo = reiMapper.selectREIOne(reiNum);
+		//리뷰 지우면 댓글 연관된 것들 사라지게 만들기
 		if(reiMapper.deleteREIOne(reiNum)==1) {
 			return 0;
 		}

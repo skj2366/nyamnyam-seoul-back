@@ -2,12 +2,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kjk.nyam.mapper.LikeInfoMapper">
+	<sql id="selectColumns">
+		LII_NUM,
+		CUI_NUM,
+		REL_NUM,
+		DATE_FORMAT(LII_CREDAT,'%Y-%m-%d') AS LII_CREDAT,
+		TIME_FORMAT(LII_CRETIM,'%H:%i:%s') AS LII_CRETIM,
+		(select CUI_NAME from customer_info AS CUI WHERE CUI.CUI_NUM = LII.CUI_NUM) as CUI_NAME,
+		(select REL_NAME from restaurant_list as REL WHERE REL.REL_NUM = LII.REL_NUM) as REL_NAME,
+		(select ZOI.zone_name from zone_info AS ZOI WHERE ZOI.zone_num = (select REL.ZONE_NUM from restaurant_list AS REL WHERE REL.REL_NUM = LII.REL_NUM)) AS ZONE_NAME
+	</sql>
+
 	<select id="selectLIIList" resultType="lii">
-		select * from like_info
+		select 
+		<include refid="selectColumns"></include>
+		from like_info AS LII
 	</select>
 	
 	<select id="selectLIIListByCuiNum" resultType="lii">
-		select * from like_info
+		select 
+		<include refid="selectColumns"></include>
+		from like_info
 		where CUI_NUM = #{cuiNum}
 	</select>
 	
