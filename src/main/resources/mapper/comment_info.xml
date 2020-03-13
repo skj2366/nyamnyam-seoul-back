@@ -3,7 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kjk.nyam.mapper.CommentInfoMapper">
 	<sql id="selectColumns">
-		COI_NUM, CUI_NUM, REI_NUM, SUB_NUM, COI_CONTENTS, COI_CREDAT, COI_CRETIM,
+		COI_NUM, CUI_NUM, REI_NUM, SUB_NUM, COI_CONTENTS, 
+		DATE_FORMAT(COI_CREDAT,'%Y-%m-%d')AS COI_CREDAT, 
+		TIME_FORMAT(COI_CRETIM,'%H:%i:%s') AS COI_CRETIM,
 		(select CUI_ID from customer_info AS CUI WHERE CUI.CUI_NUM = COI.CUI_NUM) as CUI_ID
 	</sql>
 	
