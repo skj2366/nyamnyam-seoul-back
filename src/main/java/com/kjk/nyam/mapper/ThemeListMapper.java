@@ -10,4 +10,5 @@ import com.kjk.nyam.vo.ThemeListVO;
 public interface ThemeListMapper {
 
 	public List<ThemeListVO> selectTHLList();
+	public Integer insertTHLList(ThemeListVO thlVO);
 }

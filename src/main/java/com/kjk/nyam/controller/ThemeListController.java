@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kjk.nyam.service.ThemeListService;
@@ -21,5 +23,11 @@ public class ThemeListController {
 	@GetMapping("/thl")
 	public List<ThemeListVO> selectTHLList() {
 		return thlService.selectTHLList();
+	}
+	
+	@PostMapping("/thl")
+	public Integer insertTHLList(@RequestBody ThemeListVO thlVO) {
+		System.out.println("테마 insert : " + thlVO);
+		return thlService.insertTHLOne(thlVO);		
 	}
 }
