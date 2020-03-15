@@ -19,4 +19,7 @@ public class CommentInfoVO {
 	
 	private String cuiId;
 	
+	private Boolean isWriteOpen;
+	private Boolean isCommentOpen;
+	
 }
