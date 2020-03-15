@@ -41,6 +41,11 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 		return coiMapper.selectCOIListByReiNum(reiNum);
 	}
 
+	@Override
+	public Integer updateCOIOne(CommentInfoVO coi) {
+		return coiMapper.updateCOIOne(coi);
+	}
+
 	
 
 }
