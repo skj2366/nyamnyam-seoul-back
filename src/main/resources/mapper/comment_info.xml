@@ -6,6 +6,8 @@
 		COI_NUM, CUI_NUM, REI_NUM, SUB_NUM, COI_CONTENTS, 
 		DATE_FORMAT(COI_CREDAT,'%Y-%m-%d')AS COI_CREDAT, 
 		TIME_FORMAT(COI_CRETIM,'%H:%i:%s') AS COI_CRETIM,
+		DATE_FORMAT(COI_MODDAT,'%Y-%m-%d')AS COI_MODDAT, 
+		TIME_FORMAT(COI_MODTIM,'%H:%i:%s') AS COI_MODTIM,
 		(select CUI_ID from customer_info AS CUI WHERE CUI.CUI_NUM = COI.CUI_NUM) as CUI_ID
 	</sql>
 	
@@ -31,7 +33,9 @@
 			<if test='subNum != null and subNum != 0 '>SUB_NUM,</if>
 			COI_CONTENTS,
 			COI_CREDAT,
-			COI_CRETIM
+			COI_CRETIM,
+			COI_MODDAT,
+			COI_MODTIM
 		)
 		values
 		(
@@ -40,13 +44,23 @@
 			<if test='subNum != null and subNum != 0 '>#{subNum},</if>
 			#{coiContents},
 			DATE_FORMAT(NOW(),'%Y%m%d'),
+			DATE_FORMAT(NOW(),'%H%i%S'),
+			DATE_FORMAT(NOW(),'%Y%m%d'),
 			DATE_FORMAT(NOW(),'%H%i%S')
 		)
 	</insert>
 	
+	<update id="updateCOIOne">
+		update comment_info
+		<set>
+			<if test='coiContents != null and coiContens != "" '>COI_CONTENTS = #{coiContents},</if>
+			COI_MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+			COI_MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
+		</set>
+	</update>
+	
 	<delete id="deleteCOIOne">
 		delete from comment_info
 		where COI_NUM = #{coiNum}
-		and SUB_NUM = #{coiNum}
 	</delete>
 </mapper>
