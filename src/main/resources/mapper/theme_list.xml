@@ -16,4 +16,29 @@
 			THL_FOUR = <if test='thlFour != 0'>1</if>
 		</where>
 	</select>
+	
+	<insert id="insertTHLList">
+		insert into theme_list
+			(	
+				REL_NUM,
+				THL_SOLO,
+				THL_COUPLE,
+				THL_FOUR,
+				THL_CREDAT,
+				THL_CRETIM,
+				THL_MODDAT,
+				THL_MODTIM
+			 )
+			values
+			(
+				#{relNum},
+				#{thlSolo},
+				#{thlCouple},
+				#{thlFour},
+				DATE_FORMAT(NOW(),'%Y%m%d'), 
+				DATE_FORMAT(NOW(),'%H%i%S'), 
+				DATE_FORMAT(NOW(),'%Y%m%d'),
+				DATE_FORMAT(NOW(),'%H%i%S')				
+			)		
+	</insert>
 </mapper>
