@@ -32,6 +32,12 @@ public class LikeInfoController {
 		return liiService.selectLIIListByCuiNum(cuiNum);
 	}
 	
+	@GetMapping("lii/{cuiNum}/{relNum}")
+	public LikeInfoVO selectLIIByCuiNumAndRelNum(@PathVariable("cuiNum") Integer cuiNum, @PathVariable("relNum") Integer relNum) {
+		System.out.println("cuiNum : " + cuiNum + " & relNum : " + relNum);
+		return liiService.selectLIIByCuiNumAndRelNum(cuiNum, relNum);
+	}
+	
 	@PostMapping("/lii")
 	public Integer insertLIIOne(@RequestBody LikeInfoVO lii) {
 		return liiService.insertLIIOne(lii);
