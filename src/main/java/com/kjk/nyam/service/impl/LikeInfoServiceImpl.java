@@ -41,6 +41,11 @@ public class LikeInfoServiceImpl implements LikeInfoService {
 		return liiMapper.selectLIIByCuiNumAndRelNum(cuiNum, relNum);
 	}
 
+	@Override
+	public Integer deleteLiisByRelNum(int relNum) {
+		return liiMapper.deleteLIIOne(relNum);
+	}
+
 	
 
 }

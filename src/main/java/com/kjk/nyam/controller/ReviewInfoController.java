@@ -64,6 +64,11 @@ public class ReviewInfoController {
 	public Integer deleteREIOne(@PathVariable("reiNum") int reiNum) {
 		return reiService.deleteREIOne(reiNum);
 	}
+
+	@DeleteMapping("/reis/{relNum}")
+	public Integer deleteReisByRelNum(@PathVariable("relNum") int relNum) {
+		return reiService.deleteReisByRelNum(relNum);
+	}
 	
 	@GetMapping("/reis/board")
 	public List<ReviewInfoVO> selectREIListForReview() {

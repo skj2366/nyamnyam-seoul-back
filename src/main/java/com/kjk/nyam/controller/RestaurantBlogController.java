@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,5 +23,10 @@ public class RestaurantBlogController {
 	@GetMapping("/blog/{relNum}")
 	public List<RestaurantBlogVO> selectBlogList(@PathVariable("relNum") Integer relNum){
 		return rebService.selectBlogListByRelNum(relNum);
+	}
+	
+	@DeleteMapping("/blogs/{relNum}")
+	public Integer deleteBlogsByRelNum(@PathVariable("relNum") Integer relNum) {
+		return rebService.deleteBlogsByRelNum(relNum);
 	}
 }

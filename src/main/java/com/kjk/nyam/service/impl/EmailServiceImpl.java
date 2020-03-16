@@ -92,7 +92,7 @@ public class EmailServiceImpl implements EmailService {
 		int saveCerNum = cucService.insertCUCOne(cuc);
 		System.out.println("saveCerNum : " + saveCerNum);
 		if(saveCerNum == 1) {
-//			emailSender.send(message); //이메일 전송 
+			emailSender.send(message); //이메일 전송 
 			return text;
 		}else {
 			return null;

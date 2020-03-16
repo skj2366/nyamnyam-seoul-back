@@ -66,4 +66,9 @@ public class ThemeListServiceImpl implements ThemeListService {
 		return thlMapper.insertTHLList(thlVO);
 	}
 
+	@Override
+	public Integer deleteThlOneByRelNum(int relNum) {
+		return thlMapper.deleteThlOneByRelNum(relNum);
+	}
+
 }

@@ -8,4 +8,5 @@ public interface RestaurantBlogService {
 	
 	public List<RestaurantBlogVO> selectBlogListByRelNum(int relNum);
 	
+	public Integer deleteBlogsByRelNum(int relNum);
 }

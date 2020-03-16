@@ -37,8 +37,14 @@ public class CustomerCertificationController {
 //		return cucService.selectCUCByEmail(cuc);
 //	}
 	
+	@GetMapping("/cuc/email")
+	public CustomerCertificationVO selectCUCByEmail2(@RequestParam("cucEmail") String cucEmail) {
+		return cucService.selectCUCByEmail(cucEmail);
+	}
+	
 	@GetMapping("/cuc/{cucEmail}")
 	public CustomerCertificationVO selectCUCByEmail(@PathVariable("cucEmail") String cucEmail) {
+		System.out.println("인증 메일 : " + cucEmail);
 		return cucService.selectCUCByEmail(cucEmail);
 	}
 	

@@ -21,4 +21,9 @@ public class RestaurantServiceImpl implements RestaurantBlogService {
 		return rebMapper.selectBlogListByRelNum(relNum);
 	}
 
+	@Override
+	public Integer deleteBlogsByRelNum(int relNum) {
+		return rebMapper.deleteBlogsByRelNum(relNum);
+	}
+
 }
