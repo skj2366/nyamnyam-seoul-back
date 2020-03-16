@@ -22,7 +22,7 @@
 	<select id="selectLIIListByCuiNum" resultType="lii">
 		select 
 		<include refid="selectColumns"></include>
-		from like_info
+		from like_info AS LII
 		where CUI_NUM = #{cuiNum}
 	</select>
 	
