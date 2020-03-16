@@ -14,7 +14,20 @@
 	</sql>
 	
 	<select id="selectCOIList" resultType="coi">
-		select * from comment_info
+		select 
+			COI_NUM,
+			CUI_NUM,
+			REI_NUM,
+			SUB_NUM,
+			COI_CONTENTS,
+			COI_CREDAT,
+			COI_CRETIM,
+			COI_MODDAT,
+			COI_MODTIM,
+			(select CUI_ID from customer_info AS CUI WHERE CUI.CUI_NUM = COI.CUI_NUM) as CUI_ID,
+			(select REI.REI_TITLE from review_info AS REI WHERE REI.REI_NUM = COI.REI_NUM) AS REI_TITLE
+		from comment_info AS COI
+		ORDER BY COI.REI_NUM
 	</select>
 	
 	<select id="selectCOIListByReiNum" resultType="coi">
@@ -69,4 +82,10 @@
 		delete from comment_info
 		where COI_NUM = #{coiNum}
 	</delete>
+	
+	<delete id="deleteCoisByReiNum">
+		delete from commet_info
+		where REI_NUM = #{reiNum}
+	</delete>	
+
 </mapper>

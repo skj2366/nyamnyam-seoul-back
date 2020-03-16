@@ -45,6 +45,13 @@
 		where CUI_NUM = #{cuiNum}
 	</select>
 	
+	<select id="selectREIListByRelNum" resultType="rei">
+		select
+		<include refid="selectColumns"></include>
+		from review_info as REI
+		where REL_NUM = #{relNum]
+	</select>
+	
 	<insert id="insertREIOne">
 		insert into review_info
 			(
@@ -117,5 +124,10 @@
 	<delete id="deleteREIOne">
 		delete from review_info
 		where REI_NUM = #{reiNum}
+	</delete>
+	
+	<delete id="deleteReisByRelNum">
+		delete from review_info
+		where REL_NUM = #{relNum}
 	</delete>
 </mapper>

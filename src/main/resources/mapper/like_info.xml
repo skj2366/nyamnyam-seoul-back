@@ -51,4 +51,9 @@
 		DELETE FROM like_info
 		WHERE LII_NUM = #{liiNum}
 	</delete>
+	
+	<delete id="deleteLiisByRelNum">
+		DELETE FROM like_info
+		WHERE REL_NUM = #{relNum}
+	</delete>
 </mapper>

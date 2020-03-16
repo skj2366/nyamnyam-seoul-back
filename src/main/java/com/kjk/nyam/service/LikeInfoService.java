@@ -11,4 +11,5 @@ public interface LikeInfoService {
 	public LikeInfoVO selectLIIByCuiNumAndRelNum(Integer cuiNum, Integer relNum);
 	public Integer insertLIIOne(LikeInfoVO lii);
 	public Integer deleteLIIOne(int liiNum);
+	public Integer deleteLiisByRelNum(int relNum);
 }

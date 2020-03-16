@@ -41,4 +41,9 @@
 				DATE_FORMAT(NOW(),'%H%i%S')				
 			)		
 	</insert>
+	
+	<delete id="deleteThlOneByRelNum">
+		delete from theme_list
+		where REL_NUM = #{relNum}
+	</delete>
 </mapper>
