@@ -39,6 +39,7 @@ public class CustomerCertificationController {
 	
 	@GetMapping("/cuc/{cucEmail}")
 	public CustomerCertificationVO selectCUCByEmail(@PathVariable("cucEmail") String cucEmail) {
+		System.out.println("인증 메일 : " + cucEmail);
 		return cucService.selectCUCByEmail(cucEmail);
 	}
 	
