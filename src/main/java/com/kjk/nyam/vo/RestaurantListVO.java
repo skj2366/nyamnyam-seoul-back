@@ -31,4 +31,6 @@ public class RestaurantListVO {
 	private String relCretim;
 	private String relModdat;
 	private String relModtim;
+	
+	private String meiImg1Name; // 식당 대표이미지 용 , DB에는 없음.
 }
