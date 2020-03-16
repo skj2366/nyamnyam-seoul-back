@@ -11,4 +11,5 @@ public interface ThemeListMapper {
 
 	public List<ThemeListVO> selectTHLList();
 	public Integer insertTHLList(ThemeListVO thlVO);
+	public Integer deleteThlOneByRelNum(int relNum);
 }

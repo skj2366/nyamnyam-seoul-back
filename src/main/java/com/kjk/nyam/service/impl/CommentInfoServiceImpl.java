@@ -29,12 +29,7 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 	@Override
 	public Integer insertCOIOne(CommentInfoVO coi) {
 		return coiMapper.insertCOIOne(coi);
-	}
-
-	@Override
-	public Integer deleteCOIOne(int coiNum) {
-		return coiMapper.deleteCOIOne(coiNum);
-	}
+	}	
 
 	@Override
 	public List<CommentInfoVO> selectCOIListByReiNum(int reiNum) {
@@ -45,7 +40,15 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 	public Integer updateCOIOne(CommentInfoVO coi) {
 		return coiMapper.updateCOIOne(coi);
 	}
-
 	
+	@Override
+	public Integer deleteCOIOne(int coiNum) {
+		return coiMapper.deleteCOIOne(coiNum);
+	}
+
+	@Override
+	public Integer deleteCoisByReiNum(int reiNum) {
+		return coiMapper.deleteCOIOne(reiNum);
+	}	
 
 }
