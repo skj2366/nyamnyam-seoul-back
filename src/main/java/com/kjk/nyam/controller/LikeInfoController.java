@@ -47,4 +47,9 @@ public class LikeInfoController {
 	public Integer deleteLIIOne(@PathVariable("liiNum") int liiNum) {
 		return liiService.deleteLIIOne(liiNum);
 	}
+	
+	@DeleteMapping("/liis/{relNum}")
+	public Integer deleteLiisByRelNum(@PathVariable("relNum") int relNum) {
+		return liiService.deleteLiisByRelNum(relNum);
+	}
 }

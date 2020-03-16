@@ -96,6 +96,11 @@ public class MenuInfoServiceImpl implements MenuInfoService {
 		return avgPrice;
 	}
 
+	@Override
+	public Integer delteMEIsByRelNum(int relNum) {
+		return meiMapper.delteMEIsByRelNum(relNum);
+	}
+
 	
 
 }

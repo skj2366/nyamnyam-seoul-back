@@ -6,5 +6,10 @@
 		select * from restaurant_blog
 		where REL_NUM = #{relNum}
 		order by BLOG_CONTENT_CREDAT desc
-	</select>	
+	</select>
+	
+	<delete id="deleteBlogsByRelNum">
+		delete from restaurant_blog
+		where REL_NUM = #{relNum}
+	</delete>	
 </mapper>

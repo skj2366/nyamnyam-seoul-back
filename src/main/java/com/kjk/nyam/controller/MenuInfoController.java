@@ -52,4 +52,9 @@ public class MenuInfoController {
 	public Integer deleteMEIOne(@PathVariable("meiNum") int meiNum) {
 		return meiService.deleteMEIOne(meiNum);
 	}
+	
+	@DeleteMapping("/meis/{relNum}")
+	public Integer delteMEIsByRelNum(@PathVariable("relNum") int relNum) {
+		return meiService.delteMEIsByRelNum(relNum);
+	}
 }
