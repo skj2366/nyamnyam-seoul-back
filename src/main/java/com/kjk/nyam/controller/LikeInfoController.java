@@ -27,7 +27,7 @@ public class LikeInfoController {
 		return liiService.selectLIIList();
 	}
 	
-	@GetMapping("lii/{cuiNum}")
+	@GetMapping("/liis/{cuiNum}")
 	public List<LikeInfoVO> selectLIIListByCuiNum(@PathVariable("cuiNum") int cuiNum) {
 		return liiService.selectLIIListByCuiNum(cuiNum);
 	}
