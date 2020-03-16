@@ -8,7 +8,9 @@
 		TIME_FORMAT(COI_CRETIM,'%H:%i:%s') AS COI_CRETIM,
 		DATE_FORMAT(COI_MODDAT,'%Y-%m-%d')AS COI_MODDAT, 
 		TIME_FORMAT(COI_MODTIM,'%H:%i:%s') AS COI_MODTIM,
-		(select CUI_ID from customer_info AS CUI WHERE CUI.CUI_NUM = COI.CUI_NUM) as CUI_ID
+		(select CUI_ID from customer_info AS CUI WHERE CUI.CUI_NUM = COI.CUI_NUM) as CUI_ID,
+		(select REI.REI_TITLE from review_info AS REI WHERE REI.REI_NUM = COI.REI_NUM) AS REI_TITLE,
+		(select REL.REL_NAME from restaurant_list AS REL WHERE REL.rel_num = (select REI.rel_num from review_info AS REI WHERE REI.REI_NUM = COI.REI_NUM)) as REL_NAME
 	</sql>
 	
 	<select id="selectCOIList" resultType="coi">
@@ -16,12 +18,16 @@
 	</select>
 	
 	<select id="selectCOIListByReiNum" resultType="coi">
-		select <include refid="selectColumns"></include> from comment_info coi
+		select 
+		<include refid="selectColumns"></include> 
+		from comment_info AS COI
 		where COI.REI_NUM = #{reiNum}
 	</select>
 	
 	<select id="selectCOIListByCuiNum" resultType="coi">
-		select * from comment_info
+		select 
+		<include refid="selectColumns"></include>
+		from comment_info AS COI
 		where CUI_NUM = #{cuiNum}
 	</select>
 	
