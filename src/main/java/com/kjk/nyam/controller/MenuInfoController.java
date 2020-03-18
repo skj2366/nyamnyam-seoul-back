@@ -51,6 +51,7 @@ public class MenuInfoController {
 	@DeleteMapping("/mei/{meiNum}")
 	public Integer deleteMEIOne(@PathVariable("meiNum") int meiNum) {
 		return meiService.deleteMEIOne(meiNum);
+
 	}
 	
 	@DeleteMapping("/meis/{relNum}")

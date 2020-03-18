@@ -30,7 +30,7 @@ public class ThemeListController {
 	@PostMapping("/thl")
 	public Integer insertTHLList(@RequestBody ThemeListVO thlVO) {
 		System.out.println("테마 insert : " + thlVO);
-		return thlService.insertTHLOne(thlVO);		
+		return thlService.insertTHLOne(thlVO);
 	}
 	
 	@DeleteMapping("/thl/{relNum}")

@@ -100,7 +100,5 @@ public class MenuInfoServiceImpl implements MenuInfoService {
 	public Integer delteMEIsByRelNum(int relNum) {
 		return meiMapper.delteMEIsByRelNum(relNum);
 	}
-
 	
-
 }

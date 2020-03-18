@@ -46,6 +46,5 @@ public class LikeInfoServiceImpl implements LikeInfoService {
 		return liiMapper.deleteLIIOne(relNum);
 	}
 
-	
 
 }

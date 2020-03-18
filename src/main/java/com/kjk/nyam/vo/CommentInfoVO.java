@@ -18,6 +18,7 @@ public class CommentInfoVO {
 	private Integer reiNum; //FK_후기
 	
 	private String cuiId;
+
 	private String reiTitle;
 	private String relName;
 	

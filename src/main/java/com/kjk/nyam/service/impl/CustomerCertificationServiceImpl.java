@@ -23,6 +23,7 @@ public class CustomerCertificationServiceImpl implements CustomerCertificationSe
 
 	@Override
 	public CustomerCertificationVO selectCUCByEmail(String cucEmail) {
+		System.out.println("인증 메일 서비스 : " + cucEmail);
 		return cucMapper.selectCUCByEmail(cucEmail);
 	}
 

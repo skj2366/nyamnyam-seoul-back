@@ -52,6 +52,13 @@
 		where REL_NUM = #{relNum]
 	</select>
 	
+	<select id="selectREIListByRelNum" resultType="rei">
+		select
+		<include refid="selectColumns"></include>
+		from review_info as REI
+		where REL_NUM = #{relNum]
+	</select>
+	
 	<insert id="insertREIOne">
 		insert into review_info
 			(

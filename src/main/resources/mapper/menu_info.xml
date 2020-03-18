@@ -57,7 +57,7 @@
 		DELETE FROM menu_info
 		where REL_NUM = #{relNum}
 	</delete>
-	
+
 	<delete id="deleteMEIOne">
 		DELETE FROM menu_info
 		WHERE MEI_NUM = #{meiNum}

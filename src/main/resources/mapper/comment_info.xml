@@ -87,5 +87,4 @@
 		delete from commet_info
 		where REI_NUM = #{reiNum}
 	</delete>	
-
 </mapper>

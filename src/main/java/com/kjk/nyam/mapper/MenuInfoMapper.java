@@ -16,5 +16,7 @@ public interface MenuInfoMapper {
 	public Integer updateMEIOne(MenuInfoVO mei);
 	
 	public Integer deleteMEIOne(int meiNum);
+
 	public Integer delteMEIsByRelNum(int relNum);
+
 }

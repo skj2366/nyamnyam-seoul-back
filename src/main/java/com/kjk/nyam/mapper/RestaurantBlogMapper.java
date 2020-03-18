@@ -11,5 +11,5 @@ public interface RestaurantBlogMapper {
 	
 	public List<RestaurantBlogVO> selectBlogListByRelNum(int relNum);
 	public Integer deleteBlogsByRelNum(int relNum);
-	
+
 }

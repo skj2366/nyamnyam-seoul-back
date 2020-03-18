@@ -15,4 +15,5 @@ public interface MenuInfoService {
 	
 	public Integer deleteMEIOne(int meiNum);
 	public Integer delteMEIsByRelNum(int relNum);
+
 }
