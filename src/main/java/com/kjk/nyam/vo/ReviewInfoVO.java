@@ -33,6 +33,7 @@ public class ReviewInfoVO {
 	private Integer zoneNum; //FK_지역
 	private Integer subwayNum; // FK_지하철
 	
+	private String cuiNickname;
 	private String cuiName;
 	private String relName;
 	private String zoneName;

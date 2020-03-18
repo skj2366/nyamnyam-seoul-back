@@ -84,7 +84,7 @@
 	</delete>
 	
 	<delete id="deleteCoisByReiNum">
-		delete from commet_info
+		delete from comment_info
 		where REI_NUM = #{reiNum}
 	</delete>	
 </mapper>
