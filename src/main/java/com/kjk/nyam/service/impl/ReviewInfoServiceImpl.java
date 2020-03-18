@@ -22,6 +22,7 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	
 	@Resource
 	private ReviewInfoMapper reiMapper;
+	
 	@Resource
 	private CommentInfoMapper coiMapper;
 	

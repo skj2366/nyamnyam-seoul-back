@@ -49,14 +49,7 @@
 		select
 		<include refid="selectColumns"></include>
 		from review_info as REI
-		where REL_NUM = #{relNum]
-	</select>
-	
-	<select id="selectREIListByRelNum" resultType="rei">
-		select
-		<include refid="selectColumns"></include>
-		from review_info as REI
-		where REL_NUM = #{relNum]
+		where REL_NUM = #{relNum}
 	</select>
 	
 	<insert id="insertREIOne">
