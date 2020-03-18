@@ -39,6 +39,11 @@ public class CustomerInfoServiceImpl implements CustomerInfoService{
 
 	@Override
 	public Integer updateCUIOne(CustomerInfoVO cui) {
+		if(cui.getCuiBirth().indexOf("-")!=-1) {
+			cui.setCuiBirth(cui.getCuiBirth().replace("-", ""));
+		}
+		String pwd = cui.getCuiPwd();
+		cui.setCuiPwd(SHAEncoder.encode(pwd));
 		return cuiMapper.updateCUIOne(cui);
 	}
 

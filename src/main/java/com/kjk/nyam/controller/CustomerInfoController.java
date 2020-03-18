@@ -47,10 +47,9 @@ public class CustomerInfoController {
 	}
 	
 	@PutMapping("/cui")
-	public Integer updateCUIOne(@RequestBody List<CustomerInfoVO> cui) {
+	public Integer updateCUIOne(@RequestBody CustomerInfoVO cui) {
 		System.out.println(cui);
-		return null;
-		//return cuiService.updateCUIOne(cui);
+		return cuiService.updateCUIOne(cui);
 	}
 	
 	@DeleteMapping("/cui/{cuiNum}")

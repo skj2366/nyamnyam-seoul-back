@@ -41,6 +41,7 @@
 			<if test='cuiTrans != null and cuiTrans != "" '> CUI_TRANS = #{cuiTrans},</if>
 			<if test='cuiBirth != null and cuiBirth != "" '> CUI_BIRTH = #{cuiBirth},</if>
 			<if test='cuiEmail != null and cuiEmail != "" '> CUI_EMAIL = #{cuiEmail},</if>
+			<if test='cuiNickname != null and cuiNickname != "" '>CUI_NICKNAME = #{cuiNickname},</if>
 			CUI_MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
 			CUI_MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
 		</set>
