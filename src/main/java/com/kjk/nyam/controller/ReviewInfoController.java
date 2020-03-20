@@ -39,6 +39,11 @@ public class ReviewInfoController {
 		return reiService.selectREIListByCuiNum(cuiNum);
 	}
 	
+	@GetMapping("/reisrel/{relNum}")
+	public List<ReviewInfoVO> selectREIListByRelNum(@PathVariable int relNum) {
+		return reiService.selectREIListByRelNum(relNum);
+	}
+	
 	@PostMapping("/rei")
 	public Integer insertREIOne(@RequestBody ReviewInfoVO rei) {
 		return reiService.insertREIOne(rei);
