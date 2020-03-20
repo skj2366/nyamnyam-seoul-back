@@ -25,13 +25,15 @@
 	</select>
 	
 	<select id="selectRELListWithZoneAndSubway" resultType="rel">
-		select * from restaurant_list
+		select *,
+		(select mei_img1_name from menu_info mei where mei.rel_num = rel.rel_num limit 1) as MEI_IMG1_NAME
+		from restaurant_list rel
 		where zone_num = #{zoneNum} and subway_num = #{subwayNum}
 	</select>
 	
 	<select id="selectRELListWithTheme" resultType="rel" parameterType="String">
 		select *,
-		(select mei_img1_name from menu_info mei where mei.rel_num = rel.rel_num limit 1) as MEI_IMG1_NAME 
+		(select mei_img1_name from menu_info mei where mei.rel_num = rel.rel_num limit 1) as MEI_IMG1_NAME
 		from restaurant_list rel 
 		<if test="themeKey != 'rel.REL_CATEGORY'">inner join theme_list thl on thl.REL_NUM = rel.REL_NUM</if>
 		where ${themeKey} = ${themeValue}
