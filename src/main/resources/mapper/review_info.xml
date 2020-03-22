@@ -44,6 +44,7 @@
 		<include refid="selectColumns"></include>
 		from review_info as rei
 		where CUI_NUM = #{cuiNum}
+		order by REI_CREDAT desc
 	</select>
 	
 	<select id="selectREIListByRelNum" resultType="rei">

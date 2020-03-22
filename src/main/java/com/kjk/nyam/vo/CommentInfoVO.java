@@ -13,6 +13,8 @@ public class CommentInfoVO {
 	private String coiContents;
 	private String coiCredat;
 	private String coiCretim;
+	private String coiModdat;
+	private String coiModtim;
 	
 	private Integer cuiNum; //FK_유저
 	private Integer reiNum; //FK_후기
